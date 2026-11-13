@@ -4,36 +4,40 @@
 
 @layer base {
   :root {
-    --bg-canvas: #f2f5f7;
+    --bg-canvas: #f3f5f6;
     --bg-surface: #ffffff;
-    --bg-subtle: #e6ecf0;
-    --bg-band: #e0e8ee;
-    --bg-spotlight: #0b1f2e;
+    --bg-subtle: #e7ecee;
+    --bg-band: #dfe6e9;
+    --bg-rail: #0d1720;
+    --bg-rail-hover: #172634;
+    --bg-spotlight: #0d1b26;
     --text-on-spotlight: #f8fafc;
-    --border-hairline: #d4dde4;
-    --border-strong: #b0bec9;
-    --text-primary: #0e1720;
-    --text-secondary: #334150;
-    --text-muted: #58687a;
-    --accent-blue: #0057a3;
-    --accent-teal: #0e7490;
-    --accent-green: #0f8a4b;
-    --accent-red: #d11a2a;
+    --border-hairline: #d6dfe3;
+    --border-strong: #b2c0c8;
+    --text-primary: #0f171f;
+    --text-secondary: #33414e;
+    --text-muted: #5a6a78;
+    --accent-blue: #0369a1;
+    --accent-teal: #0f766e;
+    --accent-green: #15803d;
+    --accent-red: #e11d48;
     --accent-amber: #b45309;
   }
 
   .dark {
-    --bg-canvas: #0b0e11;
-    --bg-surface: #12171d;
-    --bg-subtle: #182028;
+    --bg-canvas: #090c0f;
+    --bg-surface: #11161c;
+    --bg-subtle: #171f27;
     --bg-band: #141b22;
-    --bg-spotlight: #0e1a24;
+    --bg-rail: #070a0d;
+    --bg-rail-hover: #131b23;
+    --bg-spotlight: #0d161f;
     --text-on-spotlight: #f1f5f9;
-    --border-hairline: #212a34;
-    --border-strong: #324050;
+    --border-hairline: #202933;
+    --border-strong: #32404f;
     --text-primary: #f1f5f9;
-    --text-secondary: #b7c4d1;
-    --text-muted: #7a8a9b;
+    --text-secondary: #b7c3cf;
+    --text-muted: #7b8b9a;
     --accent-blue: #38bdf8;
     --accent-teal: #2dd4bf;
     --accent-green: #22c55e;
@@ -55,13 +59,13 @@
     font-family: 'Bricolage Grotesque', 'IBM Plex Sans', sans-serif;
   }
 
-  /* Font 2: Sub-judul, Navigasi, Hash, dan Angka Metrologi */
+  /* Font 2: Sub-judul, Navigasi, Hash & Angka Metrologi */
   .font-sub {
     font-family: 'IBM Plex Mono', monospace;
     font-variant-numeric: tabular-nums;
   }
 
-  /* Alias konsisten untuk angka tabular */
+  /* Alias konsisten angka tabular */
   .font-mono-num {
     font-family: 'IBM Plex Mono', monospace;
     font-variant-numeric: tabular-nums;
@@ -82,4 +86,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(100, 116, 139, 0.55);
 }
-
