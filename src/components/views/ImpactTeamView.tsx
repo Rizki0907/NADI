@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import {
   AlertTriangle,
+  ArrowRight,
   Award,
   BookMarked,
   CheckCircle2,
@@ -13,7 +14,6 @@ import {
 import { formatNumberId, formatRpJuta } from '../../utils/format';
 import { AnimatedCounter } from '../ui/AnimatedCounter';
 import { Badge } from '../ui/Badge';
-import { EditorialHeader, Reveal } from '../ui/MotionPrimitives';
 
 const TEAM_MEMBERS = [
   { order: '01', name: 'Faishal Muflih Irfanu Tsaqib' },
@@ -22,40 +22,47 @@ const TEAM_MEMBERS = [
   { order: '04', name: 'Rizki Piji Fathoni' },
 ];
 
-const SECI_STEPS = [
+const SECI_LOOP = [
   {
-    code: '01 · TACIT → EXPLICIT',
-    title: 'Eksternalisasi Intuisi Lapangan',
-    desc: 'Putusan benar/salah investigator atas Kartu Kasus (selisih muai, stop liar, dan perilaku kru) terekam terstruktur +3 hari setelah penugasan.',
+    code: 'STEP 01 · EKSTERNALISASI',
+    role: 'Tacit → Explicit',
+    title: 'Putusan Lapangan Investigator',
+    desc: 'Hasil verifikasi fisik atas Kartu Kasus (selisih muai, stop liar, & histori kru) direkam terstruktur pada siklus t+3 hari.',
   },
   {
-    code: '02 · EXPLICIT → EXPLICIT',
-    title: 'Kombinasi Fisika & Pembelajaran Aktif',
-    desc: 'Rumus standar ASTM D1250 & OIML digabungkan dengan fitur CUSUM kru serta kalibrasi ulang LightGBM mingguan yang bebas dari kebocoran label masa depan.',
+    code: 'STEP 02 · KOMBINASI',
+    role: 'Explicit → Explicit',
+    title: 'Kalibrasi Ulang Fisika + ML',
+    desc: 'Rumus standar ASTM D1250 & OIML digabungkan dengan fitur CUSUM serta pelatihan mingguan LightGBM yang bebas kebocoran masa depan.',
   },
   {
-    code: '03 · EXPLICIT → TACIT',
-    title: 'Internalisasi via Penjelasan TreeSHAP',
-    desc: 'Investigator baru langsung membaca 3 atribut numerik pendorong & saran pemeriksaan di Kartu Kasus—sehingga keahlian pengendalian susut bertahan melampaui rotasi personel.',
+    code: 'STEP 03 · INTERNALISASI',
+    role: 'Explicit → Tacit',
+    title: 'Transfer Keahlian Lintas Mutasi',
+    desc: 'Auditee/investigator baru langsung membaca 3 pendorong TreeSHAP & rekomendasi audit, sehingga kapabilitas kontrol susut tidak hilang saat rotasi personel.',
   },
 ];
 
 const PILOT_KPIS = [
   {
-    kpi: 'Precision Temuan Aktual di Lapangan',
-    target: 'Validasi rasio kasus terbukti dari kuota harian 5% Tier 1',
+    code: 'KPI-01',
+    kpi: 'Precision Temuan Aktual Lapangan',
+    measure: 'Proporsi trip Tier 1 (kuota 5%) yang terbukti menyimpang saat pemeriksaan fisik SPBU',
   },
   {
+    code: 'KPI-02',
     kpi: 'Efisiensi Jam Audit per Kasus',
-    target: 'Penurunan beban pemeriksaan dari berkurangnya 1,88 alarm palsu/hari',
+    measure: 'Pengurangan inspeksi sia-sia dari turunnya 1,88 alarm palsu/hari',
   },
   {
-    kpi: 'Volume Penyimpangan Berhasil Dibuktikan',
-    target: 'Verifikasi tambahan cakupan volume (+18,5 poin persentase vs baseline)',
+    code: 'KPI-03',
+    kpi: 'Volume Penyimpangan Terbukti',
+    measure: 'Verifikasi realisasi pengamanan liter (+18,5 pp vs batas statistik)',
   },
   {
-    kpi: 'Biaya Integrasi Tier 1 → Tier 2',
-    target: 'Memanfaatkan aliran DO, ATG, & GPS eksisting tanpa sensor perangkat keras baru',
+    code: 'KPI-04',
+    kpi: 'Biaya Integrasi Sistem Eksisting',
+    measure: 'Memanfaatkan aliran DO, NGS, ATG, & GPS tanpa pengadaan sensor perangkat keras baru',
   },
 ];
 
@@ -80,7 +87,7 @@ export function ImpactTeamView() {
     const additionalLitersPrioritized = anomalyVolLiters * addedCaptureShare;
     const grossEquivalentRp = additionalLitersPrioritized * retailPricePertamax;
     const recoveredGrossRp = grossEquivalentRp * (recoveryRatePct / 100);
-    const savedFalseAlarmsPer100Days = 1.88 * 100; // 9.34 -> 7.46 /day
+    const savedFalseAlarmsPer100Days = 1.88 * 100;
 
     return {
       additionalLitersPrioritized,
@@ -92,256 +99,267 @@ export function ImpactTeamView() {
 
   return (
     <div className="w-full">
-      {/* WORKBENCH BAND 1: ILLUSTRATIVE ECONOMIC IMPACT & NONAKA KNOWLEDGE MANAGEMENT */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 lg:py-10 border-b border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-8">
-        <Reveal>
-          <EditorialHeader
-            eyebrow="Bagian 3.8 &amp; 4 Paper NADI · Efisiensi Operasional, Aset Pengetahuan &amp; Roadmap Pilot"
-            title="Tambahan +18,5 Poin Cakupan Volume &amp; Hemat 188 Pemeriksaan Palsu per 100 Hari"
-            description="Menggabungkan acuan harga bahan bakar Pertamax Rp15.950/liter (ref. [7] November 2026) sebagai ilustrasi skenario manajerial—sekaligus merumuskan konversi pengetahuan Nonaka SECI untuk PT Pertamina Patra Niaga."
-          />
-        </Reveal>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Interactive Illustrative Calculator */}
-          <div className="lg:col-span-7 rounded-lg border border-[var(--border-strong)] bg-[var(--bg-canvas)] p-5 sm:p-6 space-y-5">
-            <div className="flex items-center justify-between border-b border-[var(--border-hairline)] pb-3">
-              <span className="flex items-center gap-2 font-sub text-xs font-semibold text-[var(--text-primary)]">
-                <Coins className="w-4 h-4 text-[var(--accent-blue)]" />
-                Kalkulator Ilustratif Nilai Tambah Triase B_plus vs Baseline adj-z (Kuota 5%)
-              </span>
-              <Badge variant="amber">Ilustratif Paper</Badge>
-            </div>
-
-            <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
-              Dengan memprioritaskan 5% perjalanan berisiko tertinggi setiap hari,{' '}
-              <code className="font-mono-num">B_plus</code> menjaring{' '}
-              <strong>84,4%</strong> total volume curian vs <strong>65,9%</strong> pada{' '}
-              <code className="font-mono-num">adj-z</code> (+18,5 poin persentase) sembari
-              memangkas peringatan palsu harian dari 9,34 menjadi 7,46 trip/hari (−1,88/hari).
-              Simulasi di bawah bersifat ilustratif sebelum uji kalibrasi aktual di lapangan.
+      {/* SECTION 1: ILLUSTRATIVE ROI WORKBENCH + JATIMBALINUS PILOT CHARTER */}
+      <section className="border-b border-[var(--border-hairline)] bg-[var(--bg-surface)] py-8 lg:py-10">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <div className="space-y-1.5 max-w-3xl">
+            <p className="font-sub text-[10.5px] uppercase tracking-[0.14em] text-[var(--accent-blue)]">
+              Bagian 3.8 &amp; 4 Paper NADI · Tata Kelola Implementasi, SECI &amp; Pilot Regional
             </p>
+            <h1 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">
+              Dampak Ekonomi Ilustratif, Konversi Pengetahuan &amp; Rencana Pilot Jatimbalinus
+            </h1>
+            <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
+              Kenaikan <strong>+18,5 poin persentase</strong> cakupan volume prioritas serta
+              penghematan <strong>188 inspeksi palsu / 100 hari</strong> diterjemahkan menjadi
+              kerangka pilot kalibrasi lapangan berbasis acuan Pertamax Rp15.950/L (ref. [7] Nov 2026).
+            </p>
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <label className="space-y-1.5">
-                <div className="flex justify-between font-sub">
-                  <span className="text-[var(--text-muted)]">Volume Penyimpangan Hipotetis</span>
-                  <span className="font-bold text-[var(--text-primary)]">
-                    {formatNumberId(anomalyVolLiters)} L
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min={50000}
-                  max={500000}
-                  step={50000}
-                  value={anomalyVolLiters}
-                  onChange={(e) => setAnomalyVolLiters(Number(e.target.value))}
-                  className="w-full accent-[var(--accent-blue)]"
-                />
-              </label>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* Left: Interactive Illustrative Impact Calculator */}
+            <div className="lg:col-span-6 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-canvas)] p-5 sm:p-6 space-y-5">
+              <div className="flex items-center justify-between border-b border-[var(--border-hairline)] pb-3">
+                <span className="flex items-center gap-2 font-sub text-xs font-semibold text-[var(--text-primary)]">
+                  <Coins className="w-4 h-4 text-[var(--accent-blue)]" />
+                  Simulasi Nilai Tambah Kuota 5% (B_plus vs adj-z)
+                </span>
+                <Badge variant="amber">Ilustratif Paper</Badge>
+              </div>
 
-              <label className="space-y-1.5">
-                <div className="flex justify-between font-sub">
-                  <span className="text-[var(--text-muted)]">Rasio Pemulihan Terbukti</span>
-                  <span className="font-bold text-[var(--accent-green)]">
-                    {recoveryRatePct}%
-                  </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <label className="space-y-1.5">
+                  <div className="flex justify-between font-sub">
+                    <span className="text-[var(--text-muted)]">Volume Penyimpangan Skenario</span>
+                    <span className="font-bold text-[var(--text-primary)]">
+                      {formatNumberId(anomalyVolLiters)} L
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={50000}
+                    max={500000}
+                    step={50000}
+                    value={anomalyVolLiters}
+                    onChange={(e) => setAnomalyVolLiters(Number(e.target.value))}
+                    className="w-full accent-[var(--accent-blue)]"
+                  />
+                </label>
+
+                <label className="space-y-1.5">
+                  <div className="flex justify-between font-sub">
+                    <span className="text-[var(--text-muted)]">Asumsi Rasio Pemulihan</span>
+                    <span className="font-bold text-[var(--accent-green)]">
+                      {recoveryRatePct}%
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={10}
+                    max={75}
+                    step={5}
+                    value={recoveryRatePct}
+                    onChange={(e) => setRecoveryRatePct(Number(e.target.value))}
+                    className="w-full accent-[var(--accent-green)]"
+                  />
+                </label>
+              </div>
+
+              <div className="rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] grid grid-cols-2 divide-x divide-y divide-[var(--border-hairline)]">
+                <div className="p-3.5">
+                  <p className="text-[10px] font-sub uppercase text-[var(--text-muted)]">
+                    Tambahan Masuk Prioritas
+                  </p>
+                  <p className="font-mono-num text-xl font-bold text-[var(--accent-blue)] mt-1">
+                    +<AnimatedCounter value={econ.additionalLitersPrioritized} /> L
+                  </p>
+                  <p className="text-[10px] text-[var(--text-muted)]">Basis +18,5 pp</p>
                 </div>
-                <input
-                  type="range"
-                  min={10}
-                  max={75}
-                  step={5}
-                  value={recoveryRatePct}
-                  onChange={(e) => setRecoveryRatePct(Number(e.target.value))}
-                  className="w-full accent-[var(--accent-green)]"
-                />
-              </label>
+
+                <div className="p-3.5">
+                  <p className="text-[10px] font-sub uppercase text-[var(--text-muted)]">
+                    Nilai Ekuivalen (@Rp15.950)
+                  </p>
+                  <p className="font-mono-num text-xl font-bold text-[var(--text-primary)] mt-1">
+                    {formatRpJuta(econ.grossEquivalentRp)}
+                  </p>
+                  <p className="text-[10px] text-[var(--text-muted)]">Bruto volume terjaring</p>
+                </div>
+
+                <div className="p-3.5">
+                  <p className="text-[10px] font-sub uppercase text-[var(--text-muted)]">
+                    Ilustrasi Nilai Pemulihan
+                  </p>
+                  <p className="font-mono-num text-xl font-bold text-[var(--accent-green)] mt-1">
+                    {formatRpJuta(econ.recoveredGrossRp)}
+                  </p>
+                  <p className="text-[10px] text-[var(--text-muted)]">Sebelum biaya audit</p>
+                </div>
+
+                <div className="p-3.5">
+                  <p className="text-[10px] font-sub uppercase text-[var(--text-muted)]">
+                    Hemat Peringatan / 100 Hr
+                  </p>
+                  <p className="font-mono-num text-xl font-bold text-[var(--accent-red)] mt-1">
+                    −{formatNumberId(econ.savedFalseAlarmsPer100Days, 0)}
+                  </p>
+                  <p className="text-[10px] text-[var(--text-muted)]">1,88 alarm palsu/hari</p>
+                </div>
+              </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-[var(--border-hairline)]">
-              <div>
-                <p className="text-[10px] font-sub uppercase text-[var(--text-muted)]">
-                  Tambahan Masuk Prioritas
-                </p>
-                <p className="font-mono-num text-xl font-bold text-[var(--accent-blue)] mt-1">
-                  +<AnimatedCounter value={econ.additionalLitersPrioritized} /> L
-                </p>
-                <p className="text-[10px] text-[var(--text-muted)]">Basis +18,5 pp</p>
+            {/* Right: Regional Jatimbalinus Pilot KPI Charter Table */}
+            <div className="lg:col-span-6 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-canvas)] overflow-hidden">
+              <div className="px-5 py-3.5 border-b border-[var(--border-hairline)] bg-[var(--bg-surface)] flex items-center justify-between gap-2">
+                <span className="flex items-center gap-2 font-sub text-xs font-semibold text-[var(--text-primary)]">
+                  <Compass className="w-4 h-4 text-[var(--accent-blue)]" />
+                  Piagam KPI Pilot Kalibrasi · PT Pertamina Patra Niaga Jatimbalinus
+                </span>
+                <Badge variant="blue">Fase Berikutnya</Badge>
               </div>
-
-              <div>
-                <p className="text-[10px] font-sub uppercase text-[var(--text-muted)]">
-                  Nilai Ekuivalen (@Rp15.950)
-                </p>
-                <p className="font-mono-num text-xl font-bold text-[var(--text-primary)] mt-1">
-                  {formatRpJuta(econ.grossEquivalentRp)}
-                </p>
-                <p className="text-[10px] text-[var(--text-muted)]">Bruto volume prioritas</p>
-              </div>
-
-              <div>
-                <p className="text-[10px] font-sub uppercase text-[var(--text-muted)]">
-                  Ilustrasi Pemulihan
-                </p>
-                <p className="font-mono-num text-xl font-bold text-[var(--accent-green)] mt-1">
-                  {formatRpJuta(econ.recoveredGrossRp)}
-                </p>
-                <p className="text-[10px] text-[var(--text-muted)]">Sebelum biaya audit</p>
-              </div>
-
-              <div>
-                <p className="text-[10px] font-sub uppercase text-[var(--text-muted)]">
-                  Hemat Peringatan / 100 Hr
-                </p>
-                <p className="font-mono-num text-xl font-bold text-[var(--accent-red)] mt-1">
-                  −{formatNumberId(econ.savedFalseAlarmsPer100Days, 0)}
-                </p>
-                <p className="text-[10px] text-[var(--text-muted)]">1,88 alarm palsu/hari</p>
+              <div className="divide-y divide-[var(--border-hairline)] bg-[var(--bg-surface)]">
+                {PILOT_KPIS.map((item) => (
+                  <div key={item.code} className="p-4 flex items-start gap-3 text-xs">
+                    <span className="font-mono-num text-[10px] font-bold px-2 py-0.5 rounded bg-[var(--bg-canvas)] border border-[var(--border-hairline)] text-[var(--accent-blue)] shrink-0 mt-0.5">
+                      {item.code}
+                    </span>
+                    <div className="space-y-0.5">
+                      <p className="font-sub font-bold text-[var(--text-primary)]">{item.kpi}</p>
+                      <p className="text-[var(--text-secondary)] leading-relaxed">{item.measure}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Knowledge Management & Nonaka SECI + Regional Pilot Roadmap */}
-          <div className="lg:col-span-5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-5 sm:p-6 space-y-4">
-            <div className="flex items-center gap-2 font-sub text-xs font-semibold text-[var(--accent-teal)]">
-              <BookMarked className="w-4 h-4" />
-              Kodifikasi Pengetahuan Organisasi (Nonaka [22])
+          {/* Horizontal Nonaka SECI Knowledge Conversion Pipeline */}
+          <div className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-5 space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="flex items-center gap-2 font-sub text-xs font-semibold text-[var(--accent-teal)]">
+                <BookMarked className="w-4 h-4" />
+                Siklus Konversi Pengetahuan Organisasi Nonaka SECI [22]
+              </span>
+              <span className="font-mono-num text-[10.5px] text-[var(--text-muted)]">
+                Menjaga Ketahanan Kontrol Susut Lintas Mutasi Personel
+              </span>
             </div>
-            <h3 className="font-display text-lg font-bold text-[var(--text-primary)]">
-              Mempertahankan Keahlian Investigasi Susut Melampaui Mutasi Personel
-            </h3>
-            <div className="space-y-2.5 text-xs">
-              {SECI_STEPS.map((st) => (
-                <div
-                  key={st.code}
-                  className="p-3 rounded border border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-1"
-                >
-                  <p className="font-mono-num text-[10px] font-bold text-[var(--accent-blue)]">
-                    {st.code} · {st.title}
-                  </p>
-                  <p className="text-[var(--text-secondary)] leading-relaxed">{st.desc}</p>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-stretch">
+              {SECI_LOOP.map((step, idx) => (
+                <div key={step.code} className="relative flex items-stretch gap-3">
+                  <div className="flex-1 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 space-y-1.5">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-mono-num text-[10px] font-bold text-[var(--accent-blue)]">
+                        {step.code}
+                      </span>
+                      <span className="font-mono-num text-[10px] text-[var(--text-muted)]">
+                        {step.role}
+                      </span>
+                    </div>
+                    <p className="font-display text-sm font-bold text-[var(--text-primary)]">
+                      {step.title}
+                    </p>
+                    <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                  {idx < SECI_LOOP.length - 1 && (
+                    <div className="hidden lg:flex items-center text-[var(--accent-blue)]">
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           </div>
         </div>
-
-        {/* Pilot Roadmap Jatimbalinus */}
-        <div className="rounded-lg border border-[var(--border-strong)] bg-[var(--bg-canvas)] p-5 sm:p-6 space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-2 font-sub text-xs font-semibold text-[var(--text-primary)]">
-              <Compass className="w-4 h-4 text-[var(--accent-blue)]" />
-              Langkah Implementasi Berikutnya: Pilot Kalibrasi Regional Jatimbalinus
-            </div>
-            <Badge variant="blue">Human-in-the-Loop Governance</Badge>
-          </div>
-          <p className="text-xs text-[var(--text-secondary)] leading-relaxed max-w-4xl">
-            Sebelum implementasi menyeluruh, tim merekomendasikan uji kalibrasi parameter fisika dan
-            derau pada transaksi riil (NGS, DO, ATG, dan GPS) di{' '}
-            <strong>PT Pertamina Patra Niaga Regional Jatimbalinus</strong> dengan empat tolok ukur
-            evaluasi pilot berikut:
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
-            {PILOT_KPIS.map((item) => (
-              <div
-                key={item.kpi}
-                className="p-3.5 rounded border border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-1"
-              >
-                <p className="font-sub font-bold text-[var(--text-primary)]">{item.kpi}</p>
-                <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed">
-                  {item.target}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
-      {/* WORKBENCH BAND 2: 7 METHODOLOGY PRINCIPLES & LIMITATIONS */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 lg:py-10 border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] space-y-6">
-        <EditorialHeader
-          eyebrow="Keterbukaan Ilmiah &amp; Batasan Metodologi (Bagian 3.9 &amp; 5 Paper)"
-          title="Tujuh Prinsip Etika, Keterbatasan Simulasi &amp; Ancaman Validitas"
-          description="Transparansi ilmiah penuh mengenai batas kemampuan sistem serta pemisahan tegas antara bukti simulasi dan asumsi lapangan sebelum penerapan industri."
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-          {METHODOLOGY_NOTES.map((note, idx) => (
-            <div
-              key={idx}
-              className="rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 flex items-start gap-3 text-xs leading-relaxed text-[var(--text-secondary)]"
-            >
-              <span className="font-mono-num text-[11px] font-bold px-2 py-0.5 rounded bg-[var(--bg-subtle)] text-[var(--accent-blue)] shrink-0">
-                0{idx + 1}
+      {/* SECTION 2: 7 METHODOLOGY COMPLIANCE REGISTER & RESEARCH TEAM ROSTER */}
+      <section className="py-9 lg:py-11 bg-[var(--bg-canvas)]">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)] overflow-hidden">
+            <div className="px-5 py-3.5 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)] flex flex-wrap items-center justify-between gap-2">
+              <span className="font-sub text-xs font-bold uppercase tracking-wider text-[var(--text-primary)]">
+                Register Keterbukaan Ilmiah, Etika Human-in-the-Loop &amp; Batasan Simulasi (Bagian 3.9)
               </span>
-              <span>{note}</span>
+              <Badge variant="neutral">7 Catatan Wajib</Badge>
             </div>
-          ))}
-        </div>
 
-        <div className="p-4 rounded-lg border border-amber-500/30 bg-amber-500/[0.06] flex items-start gap-3 text-xs text-[var(--text-secondary)] leading-relaxed">
-          <AlertTriangle className="w-4 h-4 text-[var(--accent-amber)] shrink-0 mt-0.5" />
-          <span>
-            <strong>Fokus Penyempurnaan Lanjutan:</strong> Aturan heuristik dugaan sebab pada Kartu
-            Kasus (akurasi simulasi <strong>68,0%</strong>), deteksi pencurian mikro M2 tanpa jejak
-            telematika (recall <strong>27,9%</strong>), dan mitigasi fase <em>cold-start</em> 14
-            hari aktor baru merupakan agenda utama pembaruan saat data operasional riil Regional
-            Jatimbalinus diuji.
-          </span>
-        </div>
-      </section>
-
-      {/* WORKBENCH BAND 3: TEAM IDENTITY */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 lg:py-10 border-b border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-2 text-[11px] font-sub uppercase tracking-[0.14em] text-[var(--accent-blue)]">
-              <Users className="w-3.5 h-3.5" />
-              Tim Peneliti · IKMS PT Pertamina Patra Niaga 2026
+            <div className="divide-y divide-[var(--border-hairline)]">
+              {METHODOLOGY_NOTES.map((note, idx) => (
+                <div
+                  key={idx}
+                  className="px-5 py-3.5 flex items-start gap-4 text-xs leading-relaxed text-[var(--text-secondary)]"
+                >
+                  <span className="font-mono-num text-[11px] font-bold text-[var(--accent-blue)] shrink-0">
+                    CAT-0{idx + 1}
+                  </span>
+                  <span>{note}</span>
+                </div>
+              ))}
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">
-              Tim Sains Data Universitas Negeri Surabaya
-            </h2>
+
+            <div className="px-5 py-3.5 bg-amber-500/[0.07] border-t border-amber-500/20 flex items-start gap-3 text-xs text-[var(--text-secondary)]">
+              <AlertTriangle className="w-4 h-4 text-[var(--accent-amber)] shrink-0 mt-0.5" />
+              <span>
+                <strong>Agenda Riset Lanjutan:</strong> Meningkatkan cakupan pencurian mikro M2 tanpa
+                jejak (saat ini recall 27,9%) dan akurasi klasifikasi aturan sebab (68,0%) bersama
+                kalibrasi transaksi aktual Regional Jatimbalinus.
+              </span>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2 flex-wrap">
-            <Badge variant="blue">
-              <GraduationCap className="w-3.5 h-3.5" /> Universitas Negeri Surabaya
-            </Badge>
-            <Badge variant="green">
-              <ShieldCheck className="w-3.5 h-3.5" /> Arsip Replikasi Tervalidasi v2.1
-            </Badge>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {TEAM_MEMBERS.map((m) => (
-            <div
-              key={m.name}
-              className="rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-5 space-y-2"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-mono-num text-xs font-bold text-[var(--accent-blue)]">
-                  Penulis {m.order}
-                </span>
-                <Award className="w-4 h-4 text-[var(--accent-green)] opacity-75" />
+          {/* Academic Team Roster */}
+          <div className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+              <div>
+                <p className="flex items-center gap-1.5 text-[10.5px] font-sub uppercase tracking-[0.14em] text-[var(--accent-blue)]">
+                  <Users className="w-3.5 h-3.5" />
+                  Tim Peneliti · IKMS PT Pertamina Patra Niaga 2026
+                </p>
+                <h2 className="font-display text-2xl font-bold text-[var(--text-primary)] mt-0.5">
+                  Tim Sains Data Universitas Negeri Surabaya
+                </h2>
               </div>
-              <p className="font-display text-base font-bold text-[var(--text-primary)]">
-                {m.name}
-              </p>
-              <p className="text-xs text-[var(--text-muted)]">Universitas Negeri Surabaya</p>
-            </div>
-          ))}
-        </div>
 
-        <div className="pt-2 flex items-center gap-2 text-xs text-[var(--text-muted)]">
-          <CheckCircle2 className="w-4 h-4 text-[var(--accent-green)] shrink-0" />
-          <span>
-            Seluruh angka, kurva, uji berpasangan Wilcoxon, dan Kartu Kasus TreeSHAP pada konsol ini
-            terikat langsung ke arsip CSV (39 tabel) serta replikasi `.pkl` resmi penelitian NADI v2.1.
-          </span>
+              <div className="flex items-center gap-2 flex-wrap">
+                <Badge variant="blue">
+                  <GraduationCap className="w-3.5 h-3.5" /> Universitas Negeri Surabaya
+                </Badge>
+                <Badge variant="green">
+                  <ShieldCheck className="w-3.5 h-3.5" /> Reproducible Archive v2.1
+                </Badge>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              {TEAM_MEMBERS.map((m) => (
+                <div
+                  key={m.name}
+                  className="rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 space-y-1.5"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono-num text-[11px] font-bold text-[var(--accent-blue)]">
+                      PENULIS {m.order}
+                    </span>
+                    <Award className="w-4 h-4 text-[var(--accent-green)] opacity-80" />
+                  </div>
+                  <p className="font-display text-sm font-bold text-[var(--text-primary)]">
+                    {m.name}
+                  </p>
+                  <p className="text-[11px] text-[var(--text-muted)]">Universitas Negeri Surabaya</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
+              <CheckCircle2 className="w-4 h-4 text-[var(--accent-green)] shrink-0" />
+              Seluruh metrik, uji Wilcoxon 20 seed, figur grafik, dan Kartu Kasus TreeSHAP pada web
+              ini bersumber langsung dari tabel CSV serta `.pkl` arsip resmi v2.1.
+            </p>
+          </div>
         </div>
       </section>
     </div>

@@ -14,7 +14,9 @@ import {
   CheckCircle2,
   Expand,
   FileSpreadsheet,
+  FlaskConical,
   GitBranch,
+  Images,
   Network,
   Radar,
   ShieldAlert,
@@ -36,9 +38,11 @@ import { formatNumberId } from '../../utils/format';
 import { Badge } from '../ui/Badge';
 import { DataTable, type ColumnDef } from '../ui/DataTable';
 import { FigureLightbox } from '../ui/FigureLightbox';
-import { EditorialHeader, Reveal } from '../ui/MotionPrimitives';
+
+type LabSubTab = 'physics' | 'graph' | 'figures';
 
 export function PhysicsGraphView() {
+  const [subTab, setSubTab] = useState<LabSubTab>('physics');
   const [tierFilter, setTierFilter] = useState<'ALL' | 'Tier 1' | 'Tier 2' | 'Tier 3'>('ALL');
   const [figCategory, setFigCategory] = useState<'ALL' | PaperFigureItem['category']>('ALL');
   const [activeFigure, setActiveFigure] = useState<PaperFigureItem | null>(null);
@@ -87,7 +91,7 @@ export function PhysicsGraphView() {
     },
     {
       key: 'tier',
-      header: 'Tier Data',
+      header: 'Tier',
       align: 'center',
       sortValue: (r) => r.tier,
       render: (r) => (
@@ -115,497 +119,547 @@ export function PhysicsGraphView() {
 
   return (
     <div className="w-full">
-      {/* WORKBENCH BAND 1: RQ1 RESIDUAL DECOMPOSITION & CAUSAL ZERO-LEAKAGE AUDIT */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 lg:py-10 border-b border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-8">
-        <Reveal>
-          <EditorialHeader
-            eyebrow="Pembuktian RQ1 · Bagian 2.4 & 3.1 Paper · Dekomposisi Fisika & Koreksi Bias Kausal"
-            title="Mengapa Selisih Volume Saja Menyesatkan — dan Bagaimana Pembersihan Bertingkat Memisahkannya"
-            description="Dalam rantai Terminal–Mobil Tangki–SPBU, 41,5% perjalanan curang berada di bawah persentil ke-95 perjalanan wajar karena tertutup derau alat ukur OIML R 117-1, bias tangki ATG SPBU, serta pemisahan fase air-etanol E50 (median 0,616%)."
-          />
-        </Reveal>
+      {/* DARK-SLATE LABORATORY SUB-CONSOLE SWITCHER */}
+      <section className="bg-[var(--bg-rail)] text-slate-100 border-b border-slate-800">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-7 space-y-5">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+            <div className="space-y-1.5 max-w-3xl">
+              <p className="font-mono-num text-[10.5px] uppercase tracking-[0.16em] text-sky-400">
+                Laboratorium Verifikasi RQ1 · Bagian 2.4 &amp; 3.1–3.2 Paper NADI
+              </p>
+              <h1 className="font-display text-2xl sm:text-3xl font-bold text-white">
+                Dekomposisi Residual, Kausalitas 29 Fitur &amp; Graf Kolusi Bipartit
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Menjelaskan bagaimana koreksi termal, pengurangan bias lokal, klaster stop DBSCAN, dan{' '}
+                <code className="font-mono-num text-sky-300">excess_crew</code> memisahkan susut
+                etanol wajar dari aktivitas menyimpang tanpa kebocoran informasi masa depan.
+              </p>
+            </div>
 
-        {/* Narrative Insight Banner explaining Equations (8)-(10) */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs leading-relaxed">
-          <div className="p-4 rounded-lg border-l-2 border-[var(--accent-blue)] bg-[var(--bg-canvas)] border-y border-r border-[var(--border-hairline)] space-y-1.5">
-            <p className="font-sub font-bold text-[var(--text-primary)] uppercase tracking-wider text-[10px]">
-              1. Koreksi Termal &amp; Susut Wajar (Pers. 1–6)
-            </p>
-            <p className="text-[var(--text-secondary)]">
-              Konversi muat-terima ke suhu standar <strong>15 °C</strong> menghapus pembiasan ekspansi
-              termal ΔT (rata-rata 2 °C). Residual terkoreksi menyisakan komponen penguapan{' '}
-              <em>flash</em>, holdup tangki, derau gabungan σ = 0,280%, serta bias kalibrasi lokal.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-lg border-l-2 border-[var(--accent-green)] bg-[var(--bg-canvas)] border-y border-r border-[var(--border-hairline)] space-y-1.5">
-            <p className="font-sub font-bold text-[var(--text-primary)] uppercase tracking-wider text-[10px]">
-              2. Pengurangan Bias Kausal Bertingkat (Pers. 8–10)
-            </p>
-            <p className="text-[var(--text-secondary)]">
-              Setiap perjalanan hanya dikurangi median historis SPBU (min. 5 trip), median terminal
-              (min. 10 trip), dan rerata truk sebelumnya sebelum waktu berangkat <em>t</em>. Langkah ini
-              menekan korelasi residual terhadap bias ATG dari <strong>r = 0,933</strong> menjadi{' '}
-              <strong>r = 0,104</strong>.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-lg border-l-2 border-[var(--accent-red)] bg-[var(--bg-canvas)] border-y border-r border-[var(--border-hairline)] space-y-1.5">
-            <p className="font-sub font-bold text-[var(--text-primary)] uppercase tracking-wider text-[10px]">
-              3. Jebakan Air-Etanol E50 vs Pencurian Mikro
-            </p>
-            <p className="text-[var(--text-secondary)]">
-              Kontaminasi air pada <strong>E50</strong> memicu lonjakan susut wajar dengan median{' '}
-              <strong className="font-mono-num">0,616%</strong> (melampaui ambang batas statistik wajar).
-              Tanpa konteks penguapan etanol &amp; telematika, detektor konvensional membanjiri audit dengan
-              peringatan palsu SPBU basah.
-            </p>
+            <div className="flex flex-wrap gap-1.5 bg-slate-900/70 p-1 rounded-lg border border-slate-700/80 shrink-0 text-xs font-sub">
+              <button
+                onClick={() => setSubTab('physics')}
+                className={cn(
+                  'px-3 py-1.5 rounded-md flex items-center gap-1.5 transition-colors',
+                  subTab === 'physics'
+                    ? 'bg-sky-600 text-white font-semibold'
+                    : 'text-slate-300 hover:text-white'
+                )}
+              >
+                <FlaskConical className="w-3.5 h-3.5" />
+                Dekomposisi &amp; Kausalitas
+              </button>
+              <button
+                onClick={() => setSubTab('graph')}
+                className={cn(
+                  'px-3 py-1.5 rounded-md flex items-center gap-1.5 transition-colors',
+                  subTab === 'graph'
+                    ? 'bg-sky-600 text-white font-semibold'
+                    : 'text-slate-300 hover:text-white'
+                )}
+              >
+                <Network className="w-3.5 h-3.5" />
+                29 Fitur, Kamus &amp; Graf
+              </button>
+              <button
+                onClick={() => setSubTab('figures')}
+                className={cn(
+                  'px-3 py-1.5 rounded-md flex items-center gap-1.5 transition-colors',
+                  subTab === 'figures'
+                    ? 'bg-sky-600 text-white font-semibold'
+                    : 'text-slate-300 hover:text-white'
+                )}
+              >
+                <Images className="w-3.5 h-3.5" />
+                Arsip 20 Figur ({PAPER_FIGURES.length})
+              </button>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Residual by Source Chart */}
-          <div className="lg:col-span-7 rounded-lg border border-[var(--border-strong)] bg-[var(--bg-canvas)] p-5 space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div>
-                <p className="text-[10px] font-sub uppercase tracking-wider text-[var(--text-muted)]">
-                  Dekomposisi Residual Skenario Dasar (%) · Tabel Eksperimen
-                </p>
-                <h3 className="font-display text-lg font-bold text-[var(--text-primary)]">
-                  Air Etanol E50 (0,616%) Bertumpuk di Atas Sebagian Anomali Mikro
-                </h3>
+      {/* ACTIVE SUB-VIEW CONTENT */}
+      <section className="py-8 lg:py-10 bg-[var(--bg-canvas)]">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          {subTab === 'physics' && (
+            <>
+              {/* 3-Step Horizontal Equation Ledger */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs leading-relaxed">
+                <div className="p-4 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] border-t-2 border-t-[var(--accent-blue)] space-y-1.5">
+                  <p className="font-mono-num text-[10px] font-bold text-[var(--accent-blue)]">
+                    LANGKAH 01 · PERSAMAAN (1–6)
+                  </p>
+                  <p className="font-display text-sm font-bold text-[var(--text-primary)]">
+                    Normalisasi Suhu ASTM D1250 15 °C
+                  </p>
+                  <p className="text-[var(--text-secondary)]">
+                    Menghapus bias muai ΔT antar-terminal dan SPBU. Sisa selisih terdiri atas
+                    penguapan <em>flash</em>, sisa pipa tangki (<em>holdup</em>), serta derau alat
+                    ukur OIML σ = 0,280%.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] border-t-2 border-t-[var(--accent-green)] space-y-1.5">
+                  <p className="font-mono-num text-[10px] font-bold text-[var(--accent-green)]">
+                    LANGKAH 02 · PERSAMAAN (8–10)
+                  </p>
+                  <p className="font-display text-sm font-bold text-[var(--text-primary)]">
+                    Pengurangan Bias Kausal Bertingkat
+                  </p>
+                  <p className="text-[var(--text-secondary)]">
+                    Memakai median historis SPBU (min 5), median terminal (min 10), dan rerata truk
+                    sebelum waktu <em>t</em>. Menekan korelasi residual dengan bias tangki ATG
+                    SPBU dari <strong>r = 0,933 → 0,104</strong>.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] border-t-2 border-t-[var(--accent-red)] space-y-1.5">
+                  <p className="font-mono-num text-[10px] font-bold text-[var(--accent-red)]">
+                    LANGKAH 03 · PEMISAHAN E50 &amp; ANOMALI
+                  </p>
+                  <p className="font-display text-sm font-bold text-[var(--text-primary)]">
+                    Menjebak False Alarm Air-Etanol E50
+                  </p>
+                  <p className="text-[var(--text-secondary)]">
+                    Hanya <strong>58,5%</strong> trip curang melampaui p95 perjalanan wajar,
+                    sementara kontaminasi air E50 mencatat median residual{' '}
+                    <strong className="font-mono-num">0,616%</strong>—membutuhkan konteks fitur
+                    perilaku agar tak tertukar dengan pencurian.
+                  </p>
+                </div>
               </div>
-              <Badge variant="amber">58,5% Anomali &gt; p95 Wajar</Badge>
-            </div>
 
-            <div className="h-[260px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={residualSources} margin={{ top: 8, right: 16, left: -6, bottom: 4 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="var(--border-hairline)" />
-                  <XAxis
-                    dataKey="sumber"
-                    tick={{ fontSize: 11, fill: 'var(--text-secondary)' }}
-                  />
-                  <YAxis
-                    tickFormatter={(v) => `${v}%`}
-                    tick={{ fontSize: 11, fill: 'var(--text-muted)' }}
-                  />
-                  <Tooltip
-                    formatter={(val: number) => `${formatNumberId(val, 3)}%`}
-                    contentStyle={{
-                      backgroundColor: 'var(--bg-surface)',
-                      borderColor: 'var(--border-strong)',
-                      fontSize: '12px',
-                    }}
-                  />
-                  <Bar dataKey="median" name="Median Residual (%)" radius={[4, 4, 0, 0]}>
-                    {residualSources.map((entry) => (
-                      <Cell
-                        key={entry.sumber}
-                        fill={
-                          entry.sumber === 'anomali'
-                            ? '#e11d48'
-                            : entry.sumber === 'air etanol'
-                              ? '#b45309'
-                              : '#0369a1'
-                        }
-                      />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-
-            {/* Temporal Split Breakdown (Train -> Val -> Test with Novel Actors) */}
-            <div className="pt-3 border-t border-[var(--border-hairline)] space-y-2">
-              <div className="flex items-center gap-2 text-[10px] font-sub font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-                <CalendarClock className="w-3.5 h-3.5 text-[var(--accent-blue)]" />
-                Partisi Waktu Berurutan 180 Hari (49.508 Trip · Tanpa Pengacakan Acak)
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
-                {temporalSplit.map((sp) => (
-                  <div
-                    key={sp.split}
-                    className="p-2.5 rounded border border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-0.5"
-                  >
-                    <div className="flex items-center justify-between font-sub">
-                      <span className="uppercase font-bold text-[10px] text-[var(--accent-blue)]">
-                        {sp.split === 'train'
-                          ? 'Latih'
-                          : sp.split === 'val'
-                            ? 'Validasi'
-                            : 'Uji (Aktor Baru)'}
-                      </span>
-                      <span className="font-mono-num text-[10px] text-[var(--text-muted)]">
-                        Hr {sp.hari_awal}–{sp.hari_akhir}
-                      </span>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                {/* Left: Residual Histogram + 180-day Temporal Bar */}
+                <div className="lg:col-span-7 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)] p-5 space-y-5">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <p className="text-[10px] font-sub uppercase tracking-wider text-[var(--text-muted)]">
+                        Median Residual Menurut Sumber Fenomena (%)
+                      </p>
+                      <h3 className="font-display text-lg font-bold text-[var(--text-primary)]">
+                        Air Etanol E50 (0,616%) Menyerupai Besaran Anomali Mikro
+                      </h3>
                     </div>
-                    <p className="font-mono-num font-bold text-[var(--text-primary)]">
-                      {formatNumberId(sp.trip)} trip · {sp.anomali} anomali
+                    <Badge variant="amber">41,5% Anomali &lt; p95 Wajar</Badge>
+                  </div>
+
+                  <div className="h-[255px] w-full bg-telemetry-grid rounded border border-[var(--border-hairline)] p-2">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart
+                        data={residualSources}
+                        margin={{ top: 8, right: 16, left: -6, bottom: 4 }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" stroke="var(--border-hairline)" />
+                        <XAxis
+                          dataKey="sumber"
+                          tick={{ fontSize: 11, fill: 'var(--text-secondary)' }}
+                        />
+                        <YAxis
+                          tickFormatter={(v) => `${v}%`}
+                          tick={{ fontSize: 11, fill: 'var(--text-muted)' }}
+                        />
+                        <Tooltip
+                          formatter={(val: number) => `${formatNumberId(val, 3)}%`}
+                          contentStyle={{
+                            backgroundColor: 'var(--bg-surface)',
+                            borderColor: 'var(--border-strong)',
+                            fontSize: '12px',
+                          }}
+                        />
+                        <Bar dataKey="median" name="Median Residual (%)" radius={[4, 4, 0, 0]}>
+                          {residualSources.map((entry) => (
+                            <Cell
+                              key={entry.sumber}
+                              fill={
+                                entry.sumber === 'anomali'
+                                  ? '#e11d48'
+                                  : entry.sumber === 'air etanol'
+                                    ? '#b45309'
+                                    : '#0369a1'
+                              }
+                            />
+                          ))}
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+
+                  {/* Proportional 180-Day Temporal Horizon Bar */}
+                  <div className="space-y-2.5 pt-2 border-t border-[var(--border-hairline)]">
+                    <div className="flex items-center justify-between text-[10.5px] font-sub text-[var(--text-muted)]">
+                      <span className="flex items-center gap-1.5 font-semibold text-[var(--text-primary)]">
+                        <CalendarClock className="w-3.5 h-3.5 text-[var(--accent-blue)]" />
+                        Garis Waktu Partisi Berurutan 180 Hari (49.508 Trip · Non-Shuffled)
+                      </span>
+                      <span>Aktor Baru Terus Muncul di Uji</span>
+                    </div>
+
+                    <div className="flex h-3 rounded-full overflow-hidden border border-[var(--border-hairline)]">
+                      <div className="w-[60%] bg-[var(--accent-blue)]" title="Latih: Hari 1–108 (60%)" />
+                      <div className="w-[20%] bg-[var(--accent-amber)]" title="Validasi: Hari 109–144 (20%)" />
+                      <div className="w-[20%] bg-[var(--accent-red)]" title="Uji: Hari 145–180 (20%)" />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+                      {temporalSplit.map((sp) => (
+                        <div
+                          key={sp.split}
+                          className="p-2.5 rounded border border-[var(--border-hairline)] bg-[var(--bg-canvas)]"
+                        >
+                          <div className="flex justify-between font-sub text-[10px]">
+                            <strong className="uppercase text-[var(--accent-blue)]">
+                              {sp.split === 'train'
+                                ? 'Latih (60%)'
+                                : sp.split === 'val'
+                                  ? 'Validasi (20%)'
+                                  : 'Uji (20%)'}
+                            </strong>
+                            <span className="font-mono-num text-[var(--text-muted)]">
+                              Hr {sp.hari_awal}–{sp.hari_akhir}
+                            </span>
+                          </div>
+                          <p className="font-mono-num font-bold text-[var(--text-primary)] mt-0.5">
+                            {formatNumberId(sp.trip)} trip · {sp.anomali} anomali
+                          </p>
+                          <p className="font-mono-num text-[10px] text-[var(--text-muted)]">
+                            Prevalensi {formatNumberId(sp.prevalensi * 100, 2)}%
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: Realism & Day-100 Zero Leakage Proof Ledger */}
+                <div className="lg:col-span-5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <p className="text-[11px] font-sub font-semibold uppercase tracking-wider text-[var(--text-primary)]">
+                      Register Audit Realisme &amp; Uji Bebas Kebocoran
                     </p>
-                    <p className="font-mono-num text-[10px] text-[var(--text-muted)]">
-                      Prevalensi {formatNumberId(sp.prevalensi * 100, 2)}%
+                    <Badge variant="green">
+                      <CheckCircle2 className="w-3 h-3" /> 100% Terverifikasi
+                    </Badge>
+                  </div>
+
+                  <div className="divide-y divide-[var(--border-hairline)] text-xs">
+                    {cekRealisme.slice(0, 8).map((c) => (
+                      <div key={c.pemeriksaan} className="py-2 flex items-center justify-between gap-3">
+                        <span className="text-[var(--text-secondary)]">{c.pemeriksaan}</span>
+                        <span className="font-mono-num font-semibold text-[var(--text-primary)] shrink-0">
+                          {c.nilai > 100
+                            ? `${formatNumberId(c.nilai, 0)} L`
+                            : formatNumberId(c.nilai, 4)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-4 rounded-lg border border-emerald-500/30 bg-emerald-500/[0.07] text-xs space-y-1.5">
+                    <p className="font-sub font-bold text-emerald-700 dark:text-emerald-300">
+                      Uji Pemotongan Waktu Hari ke-100:
+                    </p>
+                    <p className="text-[var(--text-secondary)] leading-relaxed">
+                      Seluruh{' '}
+                      <strong className="font-mono-num">{causalCheckCount.featureCount}</strong>{' '}
+                      indikator dihitung ulang hanya dari catatan masa lalu ≤ hari ke-100 lalu
+                      dibandingkan dengan dataset lengkap. Selisih numerik maksimum:{' '}
+                      <strong className="font-mono-num">{causalCheckCount.maxLeak.toFixed(4)}</strong>{' '}
+                      (membuktikan nol kebocoran masa depan).
                     </p>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Realism & Zero Leakage Audit Card */}
-          <div className="lg:col-span-5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-5 space-y-4">
-            <div className="flex items-center justify-between">
-              <p className="text-[11px] font-sub font-semibold uppercase tracking-wider text-[var(--text-primary)]">
-                Audit Realisme Simulasi &amp; Uji Kausalitas
-              </p>
-              <Badge variant="green">
-                <CheckCircle2 className="w-3 h-3" /> 100% Lolos
-              </Badge>
-            </div>
-
-            <div className="divide-y divide-[var(--border-hairline)] text-xs">
-              {cekRealisme.slice(0, 8).map((c) => (
-                <div key={c.pemeriksaan} className="py-2 flex items-center justify-between gap-3">
-                  <span className="text-[var(--text-secondary)]">{c.pemeriksaan}</span>
-                  <span className="font-mono-num font-semibold text-[var(--text-primary)] shrink-0">
-                    {c.nilai > 100
-                      ? `${formatNumberId(c.nilai, 0)} L`
-                      : formatNumberId(c.nilai, 4)}
-                  </span>
                 </div>
-              ))}
-            </div>
+              </div>
+            </>
+          )}
 
-            <div className="p-3.5 rounded border border-emerald-500/30 bg-emerald-500/[0.07] text-xs space-y-1.5">
-              <p className="font-sub font-bold text-emerald-700 dark:text-emerald-300">
-                Uji Pemotongan Waktu Hari ke-100 (Zero Future Leakage):
-              </p>
-              <p className="text-[var(--text-secondary)] leading-relaxed">
-                Seluruh <strong className="font-mono-num">{causalCheckCount.featureCount}</strong>{' '}
-                fitur dihitung ulang memakai riwayat yang dipotong tepat pada hari ke-100, lalu
-                dibandingkan dengan perhitungan dataset penuh. Selisih numerik maksimum tercatat{' '}
-                <strong className="font-mono-num">{causalCheckCount.maxLeak.toFixed(4)}</strong> —
-                membuktikan nol kebocoran informasi masa depan saat pelatihan maupun skor harian.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+          {subTab === 'graph' && (
+            <div className="space-y-8">
+              {/* Row 1: Feature Importance vs Kamus Data */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <div className="lg:col-span-5 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)] p-5 space-y-4">
+                  <div>
+                    <p className="text-[10px] font-sub uppercase tracking-wider text-[var(--accent-blue)]">
+                      Kontribusi Global LightGBM B_plus
+                    </p>
+                    <h3 className="font-display text-xl font-bold text-[var(--text-primary)] mt-0.5">
+                      36,3% Kekuatan Bertumpu pada Stop, Deviasi Rute &amp; Kru
+                    </h3>
+                    <p className="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed">
+                      <code className="font-mono-num">inter_z_stop</code> (14,9%) memadukan residual
+                      dengan log(durasi stop) sehingga sopir istirahat dengan susut nol tak terjaring.
+                    </p>
+                  </div>
 
-      {/* WORKBENCH BAND 2: 29 FEATURES GLOBAL GAIN & SEARCHABLE KAMUS DATA */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 lg:py-10 border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] space-y-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Top 10 LightGBM Global Gain */}
-          <div className="lg:col-span-5 space-y-4">
-            <EditorialHeader
-              eyebrow="Anatomi 29 Indikator Kausal · Model B_plus"
-              title="36,3% Daya Deteksi Bertumpu pada Interaksi Stop, Deviasi Rute & Akumulasi Kru"
-              description="Alih-alih mengandalkan selisih volume tunggal, NADI menghubungkan ukuran susut terkoreksi dengan sinyal perilaku telematika dan riwayat kumulatif kru secara bertahap."
-            />
-
-            <div className="p-3.5 rounded border-l-2 border-[var(--accent-blue)] bg-[var(--bg-surface)] border-y border-r border-[var(--border-hairline)] text-xs text-[var(--text-secondary)] leading-relaxed space-y-1">
-              <p className="font-sub font-semibold text-[var(--text-primary)]">
-                Tafsir Tiga Sinyal Teratas:
-              </p>
-              <p>
-                <strong>inter_z_stop (14,9%)</strong> mengalikan z_adj dengan log(1 + durasi stop tak
-                terjadwal) agar pengemudi yang berhenti sah (makan/istirahat dengan z_adj ≈ 0) tidak
-                tertuduh, sementara <strong>route_dev_ratio (11,5%)</strong> &amp;{' '}
-                <strong>crew_std20 (9,9%)</strong> mengunci pola pengalihan rute berulang.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-[var(--border-strong)] bg-[var(--bg-surface)] p-4">
-              <div className="h-[320px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={featureImportance}
-                    layout="vertical"
-                    margin={{ top: 4, right: 20, left: 20, bottom: 4 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border-hairline)" />
-                    <XAxis
-                      type="number"
-                      tickFormatter={(v) => `${(v * 100).toFixed(0)}%`}
-                      tick={{ fontSize: 10, fill: 'var(--text-muted)' }}
-                    />
-                    <YAxis
-                      type="category"
-                      dataKey="fitur"
-                      width={118}
-                      tick={{ fontSize: 10.5, fill: 'var(--text-primary)', fontFamily: 'IBM Plex Mono' }}
-                    />
-                    <Tooltip
-                      formatter={(v: number) => `${formatNumberId(v * 100, 2)}% gain relatif`}
-                      contentStyle={{
-                        backgroundColor: 'var(--bg-surface)',
-                        borderColor: 'var(--border-strong)',
-                        fontSize: '12px',
-                      }}
-                    />
-                    <Bar dataKey="gain_relatif" name="Gain Relatif" radius={[0, 4, 4, 0]}>
-                      {featureImportance.map((f, idx) => (
-                        <Cell
-                          key={f.fitur}
-                          fill={idx < 3 ? '#0369a1' : idx < 6 ? '#15803d' : '#0f766e'}
+                  <div className="h-[310px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart
+                        data={featureImportance}
+                        layout="vertical"
+                        margin={{ top: 4, right: 20, left: 20, bottom: 4 }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" stroke="var(--border-hairline)" />
+                        <XAxis
+                          type="number"
+                          tickFormatter={(v) => `${(v * 100).toFixed(0)}%`}
+                          tick={{ fontSize: 10, fill: 'var(--text-muted)' }}
                         />
+                        <YAxis
+                          type="category"
+                          dataKey="fitur"
+                          width={118}
+                          tick={{
+                            fontSize: 10.5,
+                            fill: 'var(--text-primary)',
+                            fontFamily: 'IBM Plex Mono',
+                          }}
+                        />
+                        <Tooltip
+                          formatter={(v: number) => `${formatNumberId(v * 100, 2)}% gain relatif`}
+                          contentStyle={{
+                            backgroundColor: 'var(--bg-surface)',
+                            borderColor: 'var(--border-strong)',
+                            fontSize: '12px',
+                          }}
+                        />
+                        <Bar dataKey="gain_relatif" name="Gain Relatif" radius={[0, 4, 4, 0]}>
+                          {featureImportance.map((f, idx) => (
+                            <Cell
+                              key={f.fitur}
+                              fill={idx < 3 ? '#0369a1' : idx < 6 ? '#15803d' : '#0f766e'}
+                            />
+                          ))}
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+
+                {/* Right: Searchable Operational Kamus Data Table */}
+                <div className="lg:col-span-7 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 space-y-4">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <p className="text-[10px] font-sub uppercase tracking-wider text-[var(--text-muted)] flex items-center gap-1.5">
+                        <FileSpreadsheet className="w-3.5 h-3.5 text-[var(--accent-blue)]" />
+                        Kamus Data Operasional Pertamina Patra Niaga (D1–D16)
+                      </p>
+                      <h3 className="font-display text-lg font-bold text-[var(--text-primary)]">
+                        Pemetaan Indikator ke Tier Arsitektur (1–3)
+                      </h3>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1 text-xs font-sub">
+                      {(['ALL', 'Tier 1', 'Tier 2', 'Tier 3'] as const).map((tf) => (
+                        <button
+                          key={tf}
+                          onClick={() => setTierFilter(tf)}
+                          className={cn(
+                            'px-2.5 py-1 rounded border transition-colors',
+                            tierFilter === tf
+                              ? 'bg-[var(--accent-blue)] text-white border-[var(--accent-blue)]'
+                              : 'bg-[var(--bg-canvas)] border-[var(--border-strong)] text-[var(--text-secondary)]'
+                          )}
+                        >
+                          {tf === 'ALL' ? 'Semua' : tf}
+                        </button>
                       ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
+                    </div>
+                  </div>
 
-          {/* Kamus Data Searchable */}
-          <div className="lg:col-span-7 space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="text-[10px] font-sub uppercase tracking-wider text-[var(--text-muted)] flex items-center gap-1.5">
-                  <FileSpreadsheet className="w-3.5 h-3.5 text-[var(--accent-blue)]" />
-                  Kamus Data &amp; Kesiapan Integrasi PT Pertamina Patra Niaga (D1–D16)
-                </p>
-                <h3 className="font-display text-xl font-bold text-[var(--text-primary)] mt-1">
-                  Pemetaan Sumber Data Lapangan menurut Tier Arsitektur
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-1.5 text-xs font-sub">
-                {(['ALL', 'Tier 1', 'Tier 2', 'Tier 3'] as const).map((tf) => (
-                  <button
-                    key={tf}
-                    onClick={() => setTierFilter(tf)}
-                    className={cn(
-                      'px-2.5 py-1 rounded border transition-colors',
-                      tierFilter === tf
-                        ? 'bg-[var(--accent-blue)] text-white border-[var(--accent-blue)]'
-                        : 'bg-[var(--bg-surface)] border-[var(--border-strong)] text-[var(--text-secondary)]'
-                    )}
-                  >
-                    {tf === 'ALL' ? 'Semua Tier' : tf}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="p-3.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-xs text-[var(--text-secondary)] grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div>
-                <span className="font-sub font-bold text-[var(--accent-blue)]">Tier 1 (Fisika Dasar):</span>{' '}
-                NGS terminal, DO, &amp; ATG SPBU (tanpa perlu GPS).
-              </div>
-              <div>
-                <span className="font-sub font-bold text-[var(--accent-green)]">Tier 2 (Operasional):</span>{' '}
-                Integrasi telematika GPS &amp; riwayat CUSUM/EWMA kru.
-              </div>
-              <div>
-                <span className="font-sub font-bold text-[var(--accent-teal)]">Tier 3 (Relasional):</span>{' '}
-                Hotspot DBSCAN mingguan &amp; graf kolusi pasangan kru–SPBU.
-              </div>
-            </div>
-
-            <div className="bg-[var(--bg-surface)] border border-[var(--border-hairline)] rounded-lg p-4">
-              <DataTable
-                data={filteredKamus}
-                columns={kamusCols}
-                rowKey={(r) => r.kode}
-                maxHeightClass="max-h-[380px]"
-                searchPlaceholder="Cari kode fitur (D11), CUSUM, pair_zscore, atau NGS/ATG..."
-                searchMatcher={(r, q) =>
-                  `${r.kode} ${r.fitur} ${r.tier} ${r.sumber_di_lapangan}`
-                    .toLowerCase()
-                    .includes(q)
-                }
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* WORKBENCH BAND 3: SPATIAL DBSCAN HOTSPOT, BIPARTITE COLLUSION GRAPH & FIGURE LIGHTBOX */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 lg:py-10 border-b border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          {/* DBSCAN Hotspot Proof */}
-          <div className="lg:col-span-5 rounded-lg border border-[var(--border-strong)] bg-[var(--bg-canvas)] p-5 space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="flex items-center gap-2 font-sub text-xs font-semibold text-[var(--text-primary)]">
-                <Radar className="w-4 h-4 text-[var(--accent-red)]" />
-                Penemuan Otomatis Hotspot Berhenti Liar (DBSCAN)
-              </span>
-              <Badge variant="red">ε = 0,06 · min = 12</Badge>
-            </div>
-            <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
-              Sesuai Persamaan (14) pada paper, NADI <strong>tidak membutuhkan daftar koordinat
-              lokasi penadahan gelap terlebih dahulu</strong>. Algoritma DBSCAN melatih ulang koordinat
-              berhenti tidak terjadwal setiap 7 hari dari histori yang tersedia; perjalanan dalam
-              radius klaster mencatat kepadatan anomali{' '}
-              <strong className="text-[var(--text-primary)]">12,5×</strong> lebih tinggi.
-            </p>
-
-            <div className="grid grid-cols-2 gap-3 pt-1">
-              <div className="p-4 rounded border border-[var(--border-hairline)] bg-[var(--bg-surface)]">
-                <p className="text-[10px] font-sub uppercase text-[var(--text-muted)]">
-                  Di Luar Hotspot (in_hotspot = 0)
-                </p>
-                <p className="font-mono-num text-2xl font-bold text-[var(--text-primary)] mt-1">
-                  {formatNumberId((hotspotOutside?.prevalensi ?? 0.01485) * 100, 2)}%
-                </p>
-                <p className="text-[11px] font-mono-num text-[var(--text-muted)] mt-1">
-                  {formatNumberId(hotspotOutside?.jumlah_trip ?? 47451)} perjalanan
-                </p>
+                  <DataTable
+                    data={filteredKamus}
+                    columns={kamusCols}
+                    rowKey={(r) => r.kode}
+                    maxHeightClass="max-h-[345px]"
+                    searchPlaceholder="Cari D11, CUSUM, pair_zscore, atau NGS/ATG..."
+                    searchMatcher={(r, q) =>
+                      `${r.kode} ${r.fitur} ${r.tier} ${r.sumber_di_lapangan}`
+                        .toLowerCase()
+                        .includes(q)
+                    }
+                  />
+                </div>
               </div>
 
-              <div className="p-4 rounded border border-rose-500/40 bg-rose-500/[0.06]">
-                <p className="text-[10px] font-sub uppercase text-[var(--accent-red)]">
-                  Dalam Hotspot (in_hotspot = 1)
-                </p>
-                <p className="font-mono-num text-2xl font-bold text-[var(--accent-red)] mt-1">
-                  {formatNumberId((hotspotInside?.prevalensi ?? 0.18522) * 100, 2)}%
-                </p>
-                <p className="text-[11px] font-mono-num text-[var(--text-muted)] mt-1">
-                  {formatNumberId(hotspotInside?.jumlah_trip ?? 2057)} perjalanan
-                </p>
-              </div>
-            </div>
-
-            <div className="p-3 rounded border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[11px] text-[var(--text-muted)] leading-relaxed">
-              <ShieldAlert className="w-3.5 h-3.5 text-[var(--accent-amber)] inline mr-1.5" />
-              <em>Catatan Ketahanan (Skenario Sulit):</em> Ketika probabilitas jejak telematika
-              tercatat diturunkan dari 0,90 menjadi 0,55, peran fitur graf &amp; riwayat kru menjadi
-              penyangga utama saat sinyal berhenti GPS absen.
-            </div>
-          </div>
-
-          {/* Bipartite Collusion Graph Detection */}
-          <div className="lg:col-span-7 rounded-lg border border-[var(--border-strong)] bg-[var(--bg-canvas)] p-5 space-y-4">
-            <div className="flex items-center justify-between flex-wrap gap-2">
-              <span className="flex items-center gap-2 font-sub text-xs font-semibold text-[var(--text-primary)]">
-                <Network className="w-4 h-4 text-[var(--accent-blue)]" />
-                Graf Bipartit Kru–SPBU: Mengisolasi 28 Pasangan Kolusi dari 1.239 Kandidat
-              </span>
-              <Badge variant="green">Precision@20 = 75,0% (15/20 Terkonfirmasi)</Badge>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {collusionEval.map((c) => (
-                <div
-                  key={c.metode}
-                  className={cn(
-                    'p-3.5 rounded border',
-                    c.metode === 'excess_crew'
-                      ? 'border-[var(--accent-blue)] bg-sky-500/10'
-                      : 'border-[var(--border-hairline)] bg-[var(--bg-surface)]'
-                  )}
-                >
-                  <p className="font-sub text-xs font-bold text-[var(--text-primary)]">
-                    {c.metode}
+              {/* Row 2: Spatial DBSCAN vs Bipartite Collusion Graph */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                <div className="lg:col-span-5 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)] p-5 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="flex items-center gap-2 font-sub text-xs font-semibold text-[var(--text-primary)]">
+                      <Radar className="w-4 h-4 text-[var(--accent-red)]" />
+                      Klaster Spasial DBSCAN Stop Tak Terdaftar
+                    </span>
+                    <Badge variant="red">ε = 0,06 · min = 12</Badge>
+                  </div>
+                  <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+                    Dijalankan ulang tiap 7 hari hanya pada koordinat berhenti historis (tanpa daftar
+                    koordinat ilegal pradefinisi). Prevalensi anomali di dalam klaster hotspot
+                    mencapai <strong>12,5×</strong> lebih tinggi.
                   </p>
-                  <p className="font-mono-num text-xl font-bold text-[var(--accent-blue)] mt-1">
-                    {formatNumberId(c.AP, 3)}
-                  </p>
-                  <p className="text-[10px] font-mono-num text-[var(--text-muted)]">
-                    AP · AUC {formatNumberId(c.AUC, 3)}
-                  </p>
-                  <p className="text-[10px] font-mono-num text-[var(--text-secondary)] mt-1">
-                    P@k: {formatNumberId(c.P_at_k * 100, 1)}%
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3.5 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-canvas)]">
+                      <p className="text-[10px] font-sub uppercase text-[var(--text-muted)]">
+                        Luar Hotspot
+                      </p>
+                      <p className="font-mono-num text-2xl font-bold text-[var(--text-primary)] mt-1">
+                        {formatNumberId((hotspotOutside?.prevalensi ?? 0.01485) * 100, 2)}%
+                      </p>
+                      <p className="text-[11px] font-mono-num text-[var(--text-muted)] mt-0.5">
+                        {formatNumberId(hotspotOutside?.jumlah_trip ?? 47451)} trip
+                      </p>
+                    </div>
+                    <div className="p-3.5 rounded-lg border border-rose-500/40 bg-rose-500/[0.06]">
+                      <p className="text-[10px] font-sub uppercase text-[var(--accent-red)]">
+                        Dalam Hotspot
+                      </p>
+                      <p className="font-mono-num text-2xl font-bold text-[var(--accent-red)] mt-1">
+                        {formatNumberId((hotspotInside?.prevalensi ?? 0.18522) * 100, 2)}%
+                      </p>
+                      <p className="text-[11px] font-mono-num text-[var(--text-muted)] mt-0.5">
+                        {formatNumberId(hotspotInside?.jumlah_trip ?? 2057)} trip
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-[var(--text-muted)] flex items-start gap-1.5">
+                    <ShieldAlert className="w-3.5 h-3.5 text-[var(--accent-amber)] shrink-0 mt-0.5" />
+                    Saat peluang jejak GPS turun menjadi 0,55 di Skenario Sulit, fitur riwayat kru
+                    &amp; graf mengompensasi hilangnya sinyal berhenti.
                   </p>
                 </div>
-              ))}
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="p-3.5 rounded border border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-1">
-                <p className="font-sub font-bold text-[var(--text-primary)] flex items-center gap-1.5">
-                  <GitBranch className="w-3.5 h-3.5 text-[var(--accent-blue)]" />
-                  Kenapa Modularitas Komunitas Gagal (ARI = 1,000)?
-                </p>
-                <p className="text-[var(--text-secondary)] leading-relaxed">
-                  Partisi modularitas menghasilkan <em>Adjusted Rand Index</em> <strong>1,000</strong>{' '}
-                  terhadap terminal depot—artinya algoritma hanya menggambar ulang batas geografis
-                  pengiriman rutin. Sebaliknya, metrik{' '}
-                  <code className="font-mono-num">excess_crew</code> (Pers. 15) mengukur{' '}
-                  <strong>kelebihan residual pasangan spesifik</strong> setelah dikurangi kecenderungan
-                  rata-rata kru di semua SPBU lain (AP = 0,636 seed 42; 0,643 ± 0,035 di 20 seed).
-                </p>
+                <div className="lg:col-span-7 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)] p-5 space-y-4">
+                  <div className="flex items-center justify-between flex-wrap gap-2">
+                    <span className="flex items-center gap-2 font-sub text-xs font-semibold text-[var(--text-primary)]">
+                      <Network className="w-4 h-4 text-[var(--accent-blue)]" />
+                      Graf Kolusi Kru–SPBU (28 Pasangan Nyata / 1.239 Kandidat)
+                    </span>
+                    <Badge variant="green">Precision@20 = 75,0% (15/20 Terbukti)</Badge>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {collusionEval.map((c) => (
+                      <div
+                        key={c.metode}
+                        className={cn(
+                          'p-3 rounded-lg border',
+                          c.metode === 'excess_crew'
+                            ? 'border-[var(--accent-blue)] bg-sky-500/10'
+                            : 'border-[var(--border-hairline)] bg-[var(--bg-canvas)]'
+                        )}
+                      >
+                        <p className="font-sub text-xs font-bold text-[var(--text-primary)]">
+                          {c.metode}
+                        </p>
+                        <p className="font-mono-num text-xl font-bold text-[var(--accent-blue)] mt-1">
+                          {formatNumberId(c.AP, 3)}
+                        </p>
+                        <p className="text-[10px] font-mono-num text-[var(--text-muted)]">
+                          AP · AUC {formatNumberId(c.AUC, 3)}
+                        </p>
+                        <p className="text-[10px] font-mono-num text-[var(--text-secondary)] mt-1">
+                          P@k: {formatNumberId(c.P_at_k * 100, 1)}%
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div className="p-3 rounded border border-[var(--border-hairline)] bg-[var(--bg-canvas)] space-y-1">
+                      <p className="font-sub font-bold text-[var(--text-primary)] flex items-center gap-1.5">
+                        <GitBranch className="w-3.5 h-3.5 text-[var(--accent-blue)]" />
+                        Keunggulan excess_crew vs Modularitas
+                      </p>
+                      <p className="text-[var(--text-secondary)] leading-relaxed">
+                        Partisi modularitas menghasilkan <strong>ARI = 1,000</strong> terhadap
+                        terminal (hanya mendeteksi klaster geografis depot), sedangkan{' '}
+                        <code className="font-mono-num">excess_crew</code> (AP 0,636 seed 42; 0,643 ±
+                        0,035 di 20 seed) mengisolasi kelebihan susut selektif antar-komplotan.
+                      </p>
+                    </div>
+                    <div className="p-3 rounded border border-[var(--border-hairline)] bg-[var(--bg-canvas)] space-y-1.5">
+                      <p className="font-sub font-bold text-[var(--text-primary)]">
+                        Komposisi Komplotan per Terminal
+                      </p>
+                      <div className="divide-y divide-[var(--border-hairline)] font-mono-num text-[11px]">
+                        {collusionClusters.map((cl, idx) => (
+                          <div key={idx} className="py-1 flex justify-between text-[var(--text-secondary)]">
+                            <span>Terminal T{idx + 1}</span>
+                            <span>
+                              {cl.pasangan} pas. ({cl.crew} kru × {cl.spbu} SPBU)
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {subTab === 'figures' && (
+            <div className="space-y-5">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                <div>
+                  <p className="text-[10px] font-sub uppercase tracking-wider text-[var(--text-muted)]">
+                    Grafik PNG Asli Keluaran Eksperimen NADI v2.1 (Seed 42–61)
+                  </p>
+                  <h3 className="font-display text-xl font-bold text-[var(--text-primary)]">
+                    Arsip Figur Ilmiah Lengkap (Klik Figur untuk Pembesaran Lightbox)
+                  </h3>
+                </div>
+                <div className="flex flex-wrap gap-1.5 text-xs font-sub">
+                  {(['ALL', 'Fisika & EDA', 'Kinerja Model', 'Graf & Ketahanan'] as const).map(
+                    (cat) => (
+                      <button
+                        key={cat}
+                        onClick={() => setFigCategory(cat)}
+                        className={cn(
+                          'px-2.5 py-1 rounded border transition-colors',
+                          figCategory === cat
+                            ? 'bg-[var(--accent-blue)] text-white border-[var(--accent-blue)]'
+                            : 'bg-[var(--bg-surface)] border-[var(--border-strong)] text-[var(--text-secondary)]'
+                        )}
+                      >
+                        {cat === 'ALL' ? 'Semua Figur' : cat}
+                      </button>
+                    )
+                  )}
+                </div>
               </div>
 
-              <div className="p-3.5 rounded border border-[var(--border-hairline)] bg-[var(--bg-surface)] space-y-1.5">
-                <p className="font-sub font-bold text-[var(--text-primary)]">
-                  Struktur Komplotan Lintas 3 Terminal
-                </p>
-                <div className="divide-y divide-[var(--border-hairline)] font-mono-num text-[11px]">
-                  {collusionClusters.map((cl, idx) => (
-                    <div key={idx} className="py-1 flex justify-between text-[var(--text-secondary)]">
-                      <span>Terminal T{idx + 1}</span>
-                      <span>
-                        {cl.pasangan} pas. ({cl.crew} kru × {cl.spbu} SPBU)
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {filteredFigs.map((fig) => (
+                  <button
+                    key={fig.id}
+                    onClick={() => setActiveFigure(fig)}
+                    className="group text-left rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] overflow-hidden hover:border-[var(--accent-blue)] transition-all"
+                  >
+                    <div className="relative bg-white aspect-[16/10] overflow-hidden border-b border-[var(--border-hairline)]">
+                      <img
+                        src={`./figur/${fig.file}`}
+                        alt={fig.title}
+                        loading="lazy"
+                        className="w-full h-full object-contain p-1.5 transition-transform duration-200 group-hover:scale-[1.03]"
+                      />
+                      <span className="absolute top-2 right-2 w-6 h-6 rounded bg-black/70 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Expand className="w-3.5 h-3.5" />
                       </span>
                     </div>
-                  ))}
-                </div>
+                    <div className="p-3 space-y-1">
+                      <span className="font-sub text-[10px] uppercase tracking-wider text-[var(--accent-blue)]">
+                        {fig.category}
+                      </span>
+                      <p className="font-display text-xs font-bold text-[var(--text-primary)] line-clamp-2">
+                        {fig.title}
+                      </p>
+                    </div>
+                  </button>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Paper Genuine Figures Lightbox Gallery */}
-        <div className="space-y-4 pt-6 border-t border-[var(--border-hairline)]">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-            <div>
-              <p className="text-[10px] font-sub uppercase tracking-wider text-[var(--text-muted)]">
-                Arsip Figur Ilmiah Asli dari Eksperimen NADI v2.1 (20 Grafik PNG Resolusi Penuh)
-              </p>
-              <h3 className="font-display text-xl font-bold text-[var(--text-primary)]">
-                Galeri Figur Paper (Klik untuk Pembesaran &amp; Keterangan)
-              </h3>
-            </div>
-            <div className="flex flex-wrap gap-1.5 text-xs font-sub">
-              {(['ALL', 'Fisika & EDA', 'Kinerja Model', 'Graf & Ketahanan'] as const).map(
-                (cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setFigCategory(cat)}
-                    className={cn(
-                      'px-2.5 py-1 rounded border transition-colors',
-                      figCategory === cat
-                        ? 'bg-[var(--accent-blue)] text-white border-[var(--accent-blue)]'
-                        : 'bg-[var(--bg-canvas)] border-[var(--border-strong)] text-[var(--text-secondary)]'
-                    )}
-                  >
-                    {cat === 'ALL' ? 'Semua Figur' : cat}
-                  </button>
-                )
-              )}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {filteredFigs.map((fig) => (
-              <button
-                key={fig.id}
-                onClick={() => setActiveFigure(fig)}
-                className="group text-left rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-canvas)] overflow-hidden hover:border-[var(--accent-blue)] transition-all"
-              >
-                <div className="relative bg-white aspect-[16/10] overflow-hidden border-b border-[var(--border-hairline)]">
-                  <img
-                    src={`./figur/${fig.file}`}
-                    alt={fig.title}
-                    loading="lazy"
-                    className="w-full h-full object-contain p-1.5 transition-transform duration-200 group-hover:scale-[1.03]"
-                  />
-                  <span className="absolute top-2 right-2 w-6 h-6 rounded bg-black/70 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Expand className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-                <div className="p-3 space-y-1">
-                  <span className="font-sub text-[10px] uppercase tracking-wider text-[var(--accent-blue)]">
-                    {fig.category}
-                  </span>
-                  <p className="font-display text-xs font-bold text-[var(--text-primary)] line-clamp-2">
-                    {fig.title}
-                  </p>
-                </div>
-              </button>
-            ))}
-          </div>
+          )}
         </div>
       </section>
 

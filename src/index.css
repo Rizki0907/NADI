@@ -70,6 +70,21 @@
     font-family: 'IBM Plex Mono', monospace;
     font-variant-numeric: tabular-nums;
   }
+
+  /* Latar kisi kalibrasi instrumen metrologi khas NADI */
+  .bg-telemetry-grid {
+    background-image:
+      linear-gradient(to right, rgba(3, 105, 161, 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(3, 105, 161, 0.055) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .dark .bg-telemetry-grid {
+    background-image:
+      linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
 }
 
 ::-webkit-scrollbar {
