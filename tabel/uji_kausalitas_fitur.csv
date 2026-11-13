@@ -1,0 +1,2 @@
+residual_pct,z_score,resid_adj,z_adj,edge_baseline,term_baseline,berhenti_menit,deviasi_rute_km,jumlah_stop_takterdaftar,crew_unreg_stops,berhenti_log,inter_z_stop,crew_resid_mean,crew_resid_std,crew_cusum,crew_ewma,crew_ewma_slow,crew_ewma_diff,crew_roll30,crew_roll7,crew_roll_diff,hotspot_proximity,in_hotspot,hotspot_size,truck_zmean_prev,pair_n,pair_zscore,pair_excess_crew,pair_excess_spbu
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0

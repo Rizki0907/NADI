@@ -1,0 +1,7 @@
+model,skenario_dasar,skenario_sulit
+baseline (z-score),0.362 ± 0.038,0.076 ± 0.011
+baseline (adj-z-score),0.430 ± 0.042,0.079 ± 0.012
+IF,0.481 ± 0.057,0.213 ± 0.037
+IF_AAD,0.586 ± 0.052,0.282 ± 0.045
+B_graph,0.731 ± 0.045,0.391 ± 0.047
+B_plus,0.732 ± 0.044,0.402 ± 0.051

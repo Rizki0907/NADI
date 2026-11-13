@@ -1,0 +1,2044 @@
+{
+  "ablasi_tingkat_data": [
+    {
+      "set_data": "baseline adj-z",
+      "PR_AUC": "0.470 ± 0.134",
+      "R": "0.491 ± 0.106",
+      "vol_rec": "0.657 ± 0.088",
+      "R_baru": "0.547 ± 0.213"
+    },
+    {
+      "set_data": "Tier 1",
+      "PR_AUC": "0.569 ± 0.137",
+      "R": "0.551 ± 0.143",
+      "vol_rec": "0.697 ± 0.111",
+      "R_baru": "0.646 ± 0.224"
+    },
+    {
+      "set_data": "Tier 1+2",
+      "PR_AUC": "0.731 ± 0.107",
+      "R": "0.699 ± 0.099",
+      "vol_rec": "0.811 ± 0.079",
+      "R_baru": "0.634 ± 0.290"
+    },
+    {
+      "set_data": "Tier 1+2+3",
+      "PR_AUC": "0.755 ± 0.111",
+      "R": "0.732 ± 0.115",
+      "vol_rec": "0.840 ± 0.083",
+      "R_baru": "0.662 ± 0.214"
+    }
+  ],
+  "alasan_prediksi_lokal": [
+    {
+      "trip_id": 44002,
+      "crew_id": "C098",
+      "modus": "M1",
+      "skor_prob": 0.9361347635598796,
+      "kontributor_utama": "deviasi_rute_km (+0.98), inter_z_stop (+0.82), berhenti_menit (+0.54)"
+    },
+    {
+      "trip_id": 49331,
+      "crew_id": "C062",
+      "modus": "M2",
+      "skor_prob": 0.029652025234805143,
+      "kontributor_utama": "resid_adj (+0.40), crew_resid_std (-0.38), inter_z_stop (-0.33)"
+    },
+    {
+      "trip_id": 48488,
+      "crew_id": "C038",
+      "modus": "M4",
+      "skor_prob": 0.9118293389058517,
+      "kontributor_utama": "inter_z_stop (+0.87), resid_adj (+0.73), pair_zscore (+0.60)"
+    },
+    {
+      "trip_id": 41092,
+      "crew_id": "C069",
+      "modus": "M2",
+      "skor_prob": 0.004492817871862301,
+      "kontributor_utama": "crew_roll30 (+0.46), inter_z_stop (-0.34), resid_adj (-0.32)"
+    },
+    {
+      "trip_id": 48233,
+      "crew_id": "C098",
+      "modus": "M1",
+      "skor_prob": 0.8972908258052974,
+      "kontributor_utama": "deviasi_rute_km (+0.89), inter_z_stop (+0.85), crew_resid_std (+0.46)"
+    }
+  ],
+  "anggaran_ketidakpastian": [
+    {
+      "komponen": "ATG",
+      "u_persen_1sigma": 0.2
+    },
+    {
+      "komponen": "meter",
+      "u_persen_1sigma": 0.15
+    },
+    {
+      "komponen": "suhu",
+      "u_persen_1sigma": 0.1
+    },
+    {
+      "komponen": "densitas",
+      "u_persen_1sigma": 0.075
+    },
+    {
+      "komponen": "gabungan (kuadratur)",
+      "u_persen_1sigma": 0.2795084971874737
+    }
+  ],
+  "cek_realisme": [
+    {
+      "pemeriksaan": "standar deviasi residual trip wajar (%)",
+      "nilai": 0.3527578988295637
+    },
+    {
+      "pemeriksaan": "ketidakpastian teoretis sigma (%)",
+      "nilai": 0.2795084971874737
+    },
+    {
+      "pemeriksaan": "rata-rata residual trip wajar terbobot volume (%)",
+      "nilai": 0.16288623322163684
+    },
+    {
+      "pemeriksaan": "susut fisik evaporasi dan holdup agregat (%)",
+      "nilai": 0.08002970008189605
+    },
+    {
+      "pemeriksaan": "susut anomali agregat (%)",
+      "nilai": 0.014846375337171884
+    },
+    {
+      "pemeriksaan": "volume curian total (liter)",
+      "nilai": 144560.41393474585
+    },
+    {
+      "pemeriksaan": "korelasi residual dengan T_load",
+      "nilai": -0.00021645105228932228
+    },
+    {
+      "pemeriksaan": "korelasi residual dengan T_load - T_recv",
+      "nilai": -0.011600396144125625
+    },
+    {
+      "pemeriksaan": "proporsi trip wajar di atas 0.2%",
+      "nilai": 0.4574160505555326
+    },
+    {
+      "pemeriksaan": "proporsi trip wajar di atas 0.5%",
+      "nilai": 0.1606294659452315
+    }
+  ],
+  "evaluasi_akurasi_per_tier_kartu_kasus": [
+    {
+      "tier": "Tier 1: Segera",
+      "total_trip": 480,
+      "kasus_terbukti": 271,
+      "presisi_anomali": 0.5645833333333333,
+      "persen_trip": 0.048265460030165915,
+      "recall_tier": 0.6809045226130653,
+      "recall_kumulatif": 0.6809045226130653
+    },
+    {
+      "tier": "Tier 2: Prioritas",
+      "total_trip": 1494,
+      "kasus_terbukti": 63,
+      "presisi_anomali": 0.04216867469879518,
+      "persen_trip": 0.1502262443438914,
+      "recall_tier": 0.15829145728643215,
+      "recall_kumulatif": 0.8391959798994975
+    },
+    {
+      "tier": "Tier 3: Pantau",
+      "total_trip": 7971,
+      "kasus_terbukti": 64,
+      "presisi_anomali": 0.00802910550746456,
+      "persen_trip": 0.8015082956259427,
+      "recall_tier": 0.16080402010050251,
+      "recall_kumulatif": 1.0
+    }
+  ],
+  "evaluasi_latensi_deteksi_crew": [
+    {
+      "model": "B_graph",
+      "n_aktor": 9,
+      "terdeteksi": 0.3333333333333333,
+      "median_hari": 2.0,
+      "dalam_14_hari": 0.3333333333333333,
+      "presisi_alarm": 0.8737306843267109
+    },
+    {
+      "model": "B_plus",
+      "n_aktor": 9,
+      "terdeteksi": 0.4444444444444444,
+      "median_hari": 3.0,
+      "dalam_14_hari": 0.3333333333333333,
+      "presisi_alarm": 0.8587196467991169
+    },
+    {
+      "model": "IF_AAD",
+      "n_aktor": 9,
+      "terdeteksi": 0.5555555555555556,
+      "median_hari": 7.0,
+      "dalam_14_hari": 0.4444444444444444,
+      "presisi_alarm": 0.44724061810154525
+    },
+    {
+      "model": "IF",
+      "n_aktor": 9,
+      "terdeteksi": 0.6666666666666666,
+      "median_hari": 7.5,
+      "dalam_14_hari": 0.4444444444444444,
+      "presisi_alarm": 0.38763796909492276
+    },
+    {
+      "model": "baseline (z-score)",
+      "n_aktor": 9,
+      "terdeteksi": 0.7777777777777778,
+      "median_hari": 7.0,
+      "dalam_14_hari": 0.5555555555555556,
+      "presisi_alarm": 0.3518763796909492
+    },
+    {
+      "model": "baseline (adj-z-score)",
+      "n_aktor": 9,
+      "terdeteksi": 0.7777777777777778,
+      "median_hari": 5.0,
+      "dalam_14_hari": 0.6666666666666666,
+      "presisi_alarm": 0.3328918322295806
+    }
+  ],
+  "evaluasi_level_crew_top3": [
+    {
+      "model": "B_plus",
+      "agg": "top3",
+      "AUC": 0.9824466105528031,
+      "AP": 0.9572240451327625,
+      "P_k": 0.9020870715435934
+    },
+    {
+      "model": "B_graph",
+      "agg": "top3",
+      "AUC": 0.9692009381539995,
+      "AP": 0.9269854355068019,
+      "P_k": 0.8519582470669427
+    },
+    {
+      "model": "IF_AAD",
+      "agg": "top3",
+      "AUC": 0.911686133283268,
+      "AP": 0.7834228235235383,
+      "P_k": 0.6607551184725098
+    },
+    {
+      "model": "baseline (z-score)",
+      "agg": "top3",
+      "AUC": 0.8738829245215427,
+      "AP": 0.6786406705368655,
+      "P_k": 0.5928485162180814
+    },
+    {
+      "model": "baseline (adj-z-score)",
+      "agg": "top3",
+      "AUC": 0.8588026442370515,
+      "AP": 0.6664639922924566,
+      "P_k": 0.5646606855302507
+    },
+    {
+      "model": "IF",
+      "agg": "top3",
+      "AUC": 0.8358534966669278,
+      "AP": 0.6150402617375632,
+      "P_k": 0.495805152979066
+    }
+  ],
+  "evaluasi_metode_kolusi_pasangan": [
+    {
+      "metode": "excess_crew",
+      "AP": 0.6360481690999501,
+      "AUC": 0.9093134363572019,
+      "P_at_k": 0.5714285714285714,
+      "AP_per_terminal": 0.6850435619080929,
+      "n_kandidat": 1239,
+      "n_kolusi": 28
+    },
+    {
+      "metode": "skor_pasangan",
+      "AP": 0.45014548716241154,
+      "AUC": 0.9045358027604105,
+      "P_at_k": 0.5,
+      "AP_per_terminal": 0.556723267597985,
+      "n_kandidat": 1239,
+      "n_kolusi": 28
+    },
+    {
+      "metode": "modularitas",
+      "AP": 0.4531932300580075,
+      "AUC": 0.9202990444732807,
+      "P_at_k": 0.5,
+      "AP_per_terminal": 0.5602309990674199,
+      "n_kandidat": 1239,
+      "n_kolusi": 28
+    },
+    {
+      "metode": "acak",
+      "AP": 0.029550188261308723,
+      "AUC": 0.5209095198773152,
+      "P_at_k": 0.03571428571428571,
+      "AP_per_terminal": 0.039242431343564955,
+      "n_kandidat": 1239,
+      "n_kolusi": 28
+    }
+  ],
+  "false_alarm_menurut_sumber": [
+    {
+      "sumber": "air etanol",
+      "false_alarm": 4,
+      "trip_wajar": 60,
+      "tingkat_fa": 0.06666666666666667,
+      "lift_vs_wajar_biasa": 3.129606625258799
+    },
+    {
+      "sumber": "bias ATG",
+      "false_alarm": 28,
+      "trip_wajar": 666,
+      "tingkat_fa": 0.042042042042042045,
+      "lift_vs_wajar_biasa": 1.9736257997127562
+    },
+    {
+      "sumber": "bias truk",
+      "false_alarm": 16,
+      "trip_wajar": 1263,
+      "tingkat_fa": 0.012668250197941409,
+      "lift_vs_wajar_biasa": 0.5946995962487028
+    },
+    {
+      "sumber": "wajar biasa",
+      "false_alarm": 161,
+      "trip_wajar": 7558,
+      "tingkat_fa": 0.021301931727970364,
+      "lift_vs_wajar_biasa": 1.0
+    }
+  ],
+  "feature_importance_global": [
+    {
+      "fitur": "inter_z_stop",
+      "gain": 1644.9222655296326,
+      "split": 79,
+      "gain_relatif": 0.14868908471957507
+    },
+    {
+      "fitur": "deviasi_rute_km",
+      "gain": 1475.9161981344223,
+      "split": 157,
+      "gain_relatif": 0.13341215765764033
+    },
+    {
+      "fitur": "crew_resid_std",
+      "gain": 896.5525603294373,
+      "split": 131,
+      "gain_relatif": 0.08104187194247335
+    },
+    {
+      "fitur": "residual_pct",
+      "gain": 823.5110088586807,
+      "split": 62,
+      "gain_relatif": 0.07443944357107085
+    },
+    {
+      "fitur": "resid_adj",
+      "gain": 766.9820787906647,
+      "split": 56,
+      "gain_relatif": 0.0693296368354414
+    },
+    {
+      "fitur": "pair_excess_spbu",
+      "gain": 636.2024075388908,
+      "split": 90,
+      "gain_relatif": 0.05750809971733807
+    },
+    {
+      "fitur": "crew_unreg_stops",
+      "gain": 458.98998641967773,
+      "split": 68,
+      "gain_relatif": 0.041489377587224735
+    },
+    {
+      "fitur": "crew_resid_mean",
+      "gain": 453.12538903951645,
+      "split": 119,
+      "gain_relatif": 0.04095926036832732
+    },
+    {
+      "fitur": "pair_zscore",
+      "gain": 428.2114995121956,
+      "split": 85,
+      "gain_relatif": 0.038707224811237215
+    },
+    {
+      "fitur": "truck_zmean_prev",
+      "gain": 372.8255301117897,
+      "split": 133,
+      "gain_relatif": 0.033700733459622406
+    }
+  ],
+  "hasil_tuning_hyperparameter": [
+    {
+      "kombinasi": 1,
+      "PR_AUC": 0.8080026717522972,
+      "ROC_AUC": 0.9543119530138556,
+      "num_leaves": 15,
+      "min_child_samples": 20,
+      "learning_rate": 0.05,
+      "reg_lambda": 1.0,
+      "colsample_bytree": 0.8
+    },
+    {
+      "kombinasi": 12,
+      "PR_AUC": 0.8036100971051227,
+      "ROC_AUC": 0.9513812499851725,
+      "num_leaves": 22,
+      "min_child_samples": 20,
+      "learning_rate": 0.05,
+      "reg_lambda": 1.0,
+      "colsample_bytree": 0.85
+    },
+    {
+      "kombinasi": 6,
+      "PR_AUC": 0.8030335332972715,
+      "ROC_AUC": 0.951057812980658,
+      "num_leaves": 20,
+      "min_child_samples": 35,
+      "learning_rate": 0.04,
+      "reg_lambda": 4.0,
+      "colsample_bytree": 0.7
+    },
+    {
+      "kombinasi": 2,
+      "PR_AUC": 0.8006267292081164,
+      "ROC_AUC": 0.9496450496345321,
+      "num_leaves": 20,
+      "min_child_samples": 25,
+      "learning_rate": 0.04,
+      "reg_lambda": 2.0,
+      "colsample_bytree": 0.8
+    },
+    {
+      "kombinasi": 10,
+      "PR_AUC": 0.799819515886928,
+      "ROC_AUC": 0.9488918130897881,
+      "num_leaves": 18,
+      "min_child_samples": 25,
+      "learning_rate": 0.04,
+      "reg_lambda": 2.5,
+      "colsample_bytree": 0.8
+    },
+    {
+      "kombinasi": 3,
+      "PR_AUC": 0.7996865963027124,
+      "ROC_AUC": 0.9492211810907182,
+      "num_leaves": 24,
+      "min_child_samples": 25,
+      "learning_rate": 0.04,
+      "reg_lambda": 2.0,
+      "colsample_bytree": 0.8
+    }
+  ],
+  "kamus_data": [
+    {
+      "kode": "D1",
+      "fitur": "residual_pct",
+      "satuan": "%",
+      "tier": "Tier 1",
+      "sumber_di_lapangan": "selisih V15 muat dan V15 diterima (ATG dan POS)"
+    },
+    {
+      "kode": "D2",
+      "fitur": "z_score",
+      "satuan": "unitless",
+      "tier": "Tier 1",
+      "sumber_di_lapangan": "residual dibagi ketidakpastian gabungan"
+    },
+    {
+      "kode": "D3",
+      "fitur": "berhenti_menit",
+      "satuan": "menit",
+      "tier": "Tier 1",
+      "sumber_di_lapangan": "durasi berhenti dari GPS dan telematika"
+    },
+    {
+      "kode": "D4",
+      "fitur": "deviasi_rute_km",
+      "satuan": "km",
+      "tier": "Tier 1",
+      "sumber_di_lapangan": "deviasi dari rute terdaftar"
+    },
+    {
+      "kode": "D5",
+      "fitur": "jumlah_stop_takterdaftar",
+      "satuan": "hitung",
+      "tier": "Tier 1",
+      "sumber_di_lapangan": "stop di luar titik resmi (geofence)"
+    },
+    {
+      "kode": "D6",
+      "fitur": "edge_baseline",
+      "satuan": "%",
+      "tier": "Tier 2",
+      "sumber_di_lapangan": "median residual historis per SPBU, dihitung kausal"
+    },
+    {
+      "kode": "D7",
+      "fitur": "resid_adj, z_adj",
+      "satuan": "% dan unitless",
+      "tier": "Tier 2",
+      "sumber_di_lapangan": "residual setelah koreksi baseline SPBU"
+    },
+    {
+      "kode": "D8",
+      "fitur": "term_baseline",
+      "satuan": "%",
+      "tier": "Tier 2",
+      "sumber_di_lapangan": "median residual historis per terminal penangkal drift"
+    },
+    {
+      "kode": "D9",
+      "fitur": "truck_zmean_prev",
+      "satuan": "unitless",
+      "tier": "Tier 2",
+      "sumber_di_lapangan": "rata-rata z historis per truk, pembeda bias meter truk"
+    },
+    {
+      "kode": "D10",
+      "fitur": "crew_resid_mean, crew_resid_std",
+      "satuan": "%",
+      "tier": "Tier 2",
+      "sumber_di_lapangan": "riwayat residual ter-shrinkage per crew"
+    },
+    {
+      "kode": "D11",
+      "fitur": "crew_cusum, crew_ewma, crew_roll_diff",
+      "satuan": "unitless",
+      "tier": "Tier 2",
+      "sumber_di_lapangan": "CUSUM k=0.25, multi-lambda EWMA, dan tren jangka pendek"
+    },
+    {
+      "kode": "D12",
+      "fitur": "hotspot_proximity, in_hotspot",
+      "satuan": "kontinu dan biner",
+      "tier": "Tier 3",
+      "sumber_di_lapangan": "kedekatan spasial klaster GPS dan registri periode awal"
+    },
+    {
+      "kode": "D13",
+      "fitur": "inter_z_stop",
+      "satuan": "unitless",
+      "tier": "Tier 2",
+      "sumber_di_lapangan": "interaksi residual dengan logaritma durasi berhenti"
+    },
+    {
+      "kode": "D14",
+      "fitur": "crew_unreg_stops",
+      "satuan": "hitung",
+      "tier": "Tier 2",
+      "sumber_di_lapangan": "akumulasi stop tak terdaftar historis per crew"
+    },
+    {
+      "kode": "D15",
+      "fitur": "pair_zscore, pair_excess_crew",
+      "satuan": "unitless",
+      "tier": "Tier 3",
+      "sumber_di_lapangan": "statistik kausal pasangan crew dan SPBU dengan shrinkage"
+    },
+    {
+      "kode": "D16",
+      "fitur": "ethanol_grade",
+      "satuan": "kategori",
+      "tier": "Tier 1",
+      "sumber_di_lapangan": "grade E10, E20, atau E50 dari master produk"
+    }
+  ],
+  "kartu_kasus_prioritas_investigator": [
+    {
+      "trip_id": 42520,
+      "day": 155,
+      "terminal_id": "T1",
+      "spbu_id": "T1-S36",
+      "crew_id": "C132",
+      "ethanol_grade": "E10",
+      "skor_prob": 0.974257585487008,
+      "tier": "Tier 1: Segera",
+      "dugaan_sebab": "bongkar di lokasi tak terdaftar atau klaster hotspot",
+      "rekomendasi": "investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",
+      "label": 1
+    },
+    {
+      "trip_id": 45182,
+      "day": 165,
+      "terminal_id": "T0",
+      "spbu_id": "T0-S35",
+      "crew_id": "C071",
+      "ethanol_grade": "E50",
+      "skor_prob": 0.9688859869910473,
+      "tier": "Tier 1: Segera",
+      "dugaan_sebab": "bongkar di lokasi tak terdaftar atau klaster hotspot",
+      "rekomendasi": "investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",
+      "label": 1
+    },
+    {
+      "trip_id": 44650,
+      "day": 163,
+      "terminal_id": "T0",
+      "spbu_id": "T0-S35",
+      "crew_id": "C071",
+      "ethanol_grade": "E10",
+      "skor_prob": 0.9616513554667355,
+      "tier": "Tier 1: Segera",
+      "dugaan_sebab": "bongkar di lokasi tak terdaftar atau klaster hotspot",
+      "rekomendasi": "investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",
+      "label": 1
+    },
+    {
+      "trip_id": 39863,
+      "day": 146,
+      "terminal_id": "T0",
+      "spbu_id": "T0-S08",
+      "crew_id": "C071",
+      "ethanol_grade": "E10",
+      "skor_prob": 0.9591098036514225,
+      "tier": "Tier 1: Segera",
+      "dugaan_sebab": "bongkar di lokasi tak terdaftar atau klaster hotspot",
+      "rekomendasi": "investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",
+      "label": 1
+    },
+    {
+      "trip_id": 49263,
+      "day": 180,
+      "terminal_id": "T0",
+      "spbu_id": "T0-S07",
+      "crew_id": "C038",
+      "ethanol_grade": "E50",
+      "skor_prob": 0.9588509263720022,
+      "tier": "Tier 1: Segera",
+      "dugaan_sebab": "indikasi kolusi relasional kru dan SPBU berulang",
+      "rekomendasi": "investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",
+      "label": 1
+    },
+    {
+      "trip_id": 43001,
+      "day": 157,
+      "terminal_id": "T0",
+      "spbu_id": "T0-S35",
+      "crew_id": "C071",
+      "ethanol_grade": "E10",
+      "skor_prob": 0.9568355519953828,
+      "tier": "Tier 1: Segera",
+      "dugaan_sebab": "bongkar di lokasi tak terdaftar atau klaster hotspot",
+      "rekomendasi": "investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",
+      "label": 1
+    },
+    {
+      "trip_id": 48091,
+      "day": 175,
+      "terminal_id": "T1",
+      "spbu_id": "T1-S37",
+      "crew_id": "C008",
+      "ethanol_grade": "E20",
+      "skor_prob": 0.9553765855260894,
+      "tier": "Tier 1: Segera",
+      "dugaan_sebab": "indikasi kolusi relasional kru dan SPBU berulang",
+      "rekomendasi": "investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",
+      "label": 1
+    },
+    {
+      "trip_id": 40471,
+      "day": 148,
+      "terminal_id": "T0",
+      "spbu_id": "T0-S29",
+      "crew_id": "C071",
+      "ethanol_grade": "E10",
+      "skor_prob": 0.9527983029221233,
+      "tier": "Tier 1: Segera",
+      "dugaan_sebab": "bongkar di lokasi tak terdaftar atau klaster hotspot",
+      "rekomendasi": "investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",
+      "label": 1
+    },
+    {
+      "trip_id": 41903,
+      "day": 153,
+      "terminal_id": "T0",
+      "spbu_id": "T0-S38",
+      "crew_id": "C071",
+      "ethanol_grade": "E20",
+      "skor_prob": 0.9513199794864106,
+      "tier": "Tier 1: Segera",
+      "dugaan_sebab": "bongkar di lokasi tak terdaftar atau klaster hotspot",
+      "rekomendasi": "investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",
+      "label": 1
+    },
+    {
+      "trip_id": 39960,
+      "day": 146,
+      "terminal_id": "T1",
+      "spbu_id": "T1-S04",
+      "crew_id": "C070",
+      "ethanol_grade": "E50",
+      "skor_prob": 0.94634951488547,
+      "tier": "Tier 1: Segera",
+      "dugaan_sebab": "bongkar di lokasi tak terdaftar atau klaster hotspot",
+      "rekomendasi": "investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",
+      "label": 1
+    },
+    {
+      "trip_id": 44067,
+      "day": 161,
+      "terminal_id": "T0",
+      "spbu_id": "T0-S38",
+      "crew_id": "C071",
+      "ethanol_grade": "E20",
+      "skor_prob": 0.9460183919497605,
+      "tier": "Tier 1: Segera",
+      "dugaan_sebab": "bongkar di lokasi tak terdaftar atau klaster hotspot",
+      "rekomendasi": "investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",
+      "label": 1
+    },
+    {
+      "trip_id": 40000,
+      "day": 146,
+      "terminal_id": "T1",
+      "spbu_id": "T1-S24",
+      "crew_id": "C070",
+      "ethanol_grade": "E10",
+      "skor_prob": 0.9459013258007226,
+      "tier": "Tier 1: Segera",
+      "dugaan_sebab": "bongkar di lokasi tak terdaftar atau klaster hotspot",
+      "rekomendasi": "investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",
+      "label": 1
+    }
+  ],
+  "metrik_trip_seed_utama": [
+    {
+      "model": "B_plus",
+      "P": 0.5645833333333333,
+      "R": 0.6809045226130653,
+      "F1": 0.6173120728929385,
+      "PR_AUC": 0.7265515274786694,
+      "ROC_AUC": 0.9172135949465565,
+      "vol_rec": 0.8132366598977897,
+      "R_baru": 0.7,
+      "R_lama": 0.6793478260869565,
+      "n_baru": 30,
+      "FA_per_hari": 5.805555555555555
+    },
+    {
+      "model": "B_graph",
+      "P": 0.5541666666666667,
+      "R": 0.6683417085427136,
+      "F1": 0.6059225512528473,
+      "PR_AUC": 0.7115306818039795,
+      "ROC_AUC": 0.9047155227272845,
+      "vol_rec": 0.8116232317111549,
+      "R_baru": 0.6666666666666666,
+      "R_lama": 0.6684782608695652,
+      "n_baru": 30,
+      "FA_per_hari": 5.944444444444445
+    },
+    {
+      "model": "IF_AAD",
+      "P": 0.4666666666666667,
+      "R": 0.5628140703517588,
+      "F1": 0.510250569476082,
+      "PR_AUC": 0.6047155659214398,
+      "ROC_AUC": 0.8961338061418436,
+      "vol_rec": 0.7162038903360612,
+      "R_baru": 0.7,
+      "R_lama": 0.5516304347826086,
+      "n_baru": 30,
+      "FA_per_hari": 7.111111111111111
+    },
+    {
+      "model": "IF",
+      "P": 0.4166666666666667,
+      "R": 0.5025125628140703,
+      "F1": 0.4555808656036446,
+      "PR_AUC": 0.514742313541053,
+      "ROC_AUC": 0.8663301844932213,
+      "vol_rec": 0.6462283390222596,
+      "R_baru": 0.6666666666666666,
+      "R_lama": 0.4891304347826087,
+      "n_baru": 30,
+      "FA_per_hari": 7.777777777777778
+    },
+    {
+      "model": "baseline (adj-z-score)",
+      "P": 0.36875,
+      "R": 0.44472361809045224,
+      "F1": 0.40318906605922555,
+      "PR_AUC": 0.4341097097326274,
+      "ROC_AUC": 0.8608818682287525,
+      "vol_rec": 0.6252317071778811,
+      "R_baru": 0.5,
+      "R_lama": 0.44021739130434784,
+      "n_baru": 30,
+      "FA_per_hari": 8.416666666666666
+    },
+    {
+      "model": "baseline (z-score)",
+      "P": 0.36041666666666666,
+      "R": 0.43467336683417085,
+      "F1": 0.39407744874715267,
+      "PR_AUC": 0.4171767854861409,
+      "ROC_AUC": 0.8526488628330717,
+      "vol_rec": 0.5977303311889909,
+      "R_baru": 0.5333333333333333,
+      "R_lama": 0.4266304347826087,
+      "n_baru": 30,
+      "FA_per_hari": 8.527777777777779
+    }
+  ],
+  "parameter_skenario_dasar_vs_sulit": [
+    {
+      "parameter": "sigma gabungan (persen, 1 sigma)",
+      "skenario_dasar": 0.28,
+      "skenario_sulit": 0.559,
+      "catatan": "akurasi alat ukur; perlu dicocokkan dengan spesifikasi ATG, meter, dan sensor suhu"
+    },
+    {
+      "parameter": "TRACE_PROB (peluang jejak telematika pada M1 dan M3)",
+      "skenario_dasar": 0.9,
+      "skenario_sulit": 0.55,
+      "catatan": "seberapa sering pencurian meninggalkan jejak berhenti atau deviasi rute"
+    },
+    {
+      "parameter": "SIZE_MULT (pengali ukuran pencurian)",
+      "skenario_dasar": 1.5,
+      "skenario_sulit": 1.0,
+      "catatan": "besar pencurian relatif terhadap rentang dasar modus"
+    }
+  ],
+  "pr_auc_skenario_dasar_vs_sulit": [
+    {
+      "model": "baseline (z-score)",
+      "skenario_dasar": "0.362 ± 0.038",
+      "skenario_sulit": "0.076 ± 0.011"
+    },
+    {
+      "model": "baseline (adj-z-score)",
+      "skenario_dasar": "0.430 ± 0.042",
+      "skenario_sulit": "0.079 ± 0.012"
+    },
+    {
+      "model": "IF",
+      "skenario_dasar": "0.481 ± 0.057",
+      "skenario_sulit": "0.213 ± 0.037"
+    },
+    {
+      "model": "IF_AAD",
+      "skenario_dasar": "0.586 ± 0.052",
+      "skenario_sulit": "0.282 ± 0.045"
+    },
+    {
+      "model": "B_graph",
+      "skenario_dasar": "0.731 ± 0.045",
+      "skenario_sulit": "0.391 ± 0.047"
+    },
+    {
+      "model": "B_plus",
+      "skenario_dasar": "0.732 ± 0.044",
+      "skenario_sulit": "0.402 ± 0.051"
+    }
+  ],
+  "rancangan_metode_pemodelan": [
+    {
+      "metode": "baseline",
+      "peran_arsitektur": "Baseline Konvensional",
+      "mekanisme_kerja": "Heuristik berbasis ambang batas z_score dan telematika tanpa pembelajaran"
+    },
+    {
+      "metode": "IF",
+      "peran_arsitektur": "Unsupervised",
+      "mekanisme_kerja": "Pohon isolasi murni pada atribut fisik dan perilaku tanpa umpan balik investigasi"
+    },
+    {
+      "metode": "IF_AAD",
+      "peran_arsitektur": "Semi-Supervised",
+      "mekanisme_kerja": "Pohon isolasi adaptif dengan pembobotan umpan balik hasil investigasi lapangan"
+    },
+    {
+      "metode": "B_graph",
+      "peran_arsitektur": "Supervised Graf",
+      "mekanisme_kerja": "Model LightGBM dengan fitur relasi pasangan dan riwayat kru kausal"
+    },
+    {
+      "metode": "B_plus",
+      "peran_arsitektur": "Supervised Lanjutan",
+      "mekanisme_kerja": "Model LightGBM yang diperkaya fitur fisika terkalibrasi, regularisasi, dan pembobotan sampel"
+    }
+  ],
+  "recall_dan_fa_menurut_grade": [
+    {
+      "grade": "E10",
+      "n_anomali": 218,
+      "recall": 0.6422018348623854,
+      "ci_bawah": 0.5766116302843309,
+      "ci_atas": 0.7028670608177889,
+      "tingkat_fa": 0.02297185430463576
+    },
+    {
+      "grade": "E20",
+      "n_anomali": 125,
+      "recall": 0.76,
+      "ci_bawah": 0.6780950439664866,
+      "ci_atas": 0.8264003984993009,
+      "tingkat_fa": 0.01807044410413476
+    },
+    {
+      "grade": "E50",
+      "n_anomali": 55,
+      "recall": 0.6545454545454545,
+      "ci_bawah": 0.5225365801066263,
+      "ci_atas": 0.7663746663584595,
+      "tingkat_fa": 0.02689655172413793
+    }
+  ],
+  "recall_menurut_rentang_sigma": [
+    {
+      "rentang_sigma": "< 1.0 sigma",
+      "jumlah_trip": 67,
+      "baseline (z-score)": 0.1044776119402985,
+      "baseline (adj-z-score)": 0.05970149253731343,
+      "IF": 0.1044776119402985,
+      "IF_AAD": 0.1791044776119403,
+      "B_graph": 0.2537313432835821,
+      "B_plus": 0.29850746268656714
+    },
+    {
+      "rentang_sigma": "1.0 - 1.5 sigma",
+      "jumlah_trip": 90,
+      "baseline (z-score)": 0.2111111111111111,
+      "baseline (adj-z-score)": 0.18888888888888888,
+      "IF": 0.2777777777777778,
+      "IF_AAD": 0.28888888888888886,
+      "B_graph": 0.37777777777777777,
+      "B_plus": 0.43333333333333335
+    },
+    {
+      "rentang_sigma": ">= 1.5 sigma",
+      "jumlah_trip": 241,
+      "baseline (z-score)": 0.6099585062240664,
+      "baseline (adj-z-score)": 0.6473029045643154,
+      "IF": 0.6970954356846473,
+      "IF_AAD": 0.7717842323651453,
+      "B_graph": 0.8921161825726142,
+      "B_plus": 0.8796680497925311
+    }
+  ],
+  "ringkasan_deskriptif_trip": [
+    {
+      "label": "V15_load",
+      "count": 49508.0,
+      "mean": 19667.69953496079,
+      "std": 2270.699419124458,
+      "min": 15583.801502060462,
+      "25%": 17711.874498552697,
+      "50%": 19664.933363817643,
+      "75%": 21643.094428639997,
+      "max": 23808.47622413742
+    },
+    {
+      "label": "residual_pct",
+      "count": 49508.0,
+      "mean": 0.17799277155436344,
+      "std": 0.3706636801327846,
+      "min": -1.9189082412391858,
+      "25%": -0.056032300767625075,
+      "50%": 0.1726598038002832,
+      "75%": 0.4054669545658819,
+      "max": 2.6645052266007268
+    },
+    {
+      "label": "z_score",
+      "count": 49508.0,
+      "mean": 0.6079774468085226,
+      "std": 1.2510471964360879,
+      "min": -5.551405875579216,
+      "25%": -0.19147463135813347,
+      "50%": 0.5912570600493916,
+      "75%": 1.3867224846399402,
+      "max": 8.497434886457444
+    },
+    {
+      "label": "berhenti_menit",
+      "count": 49508.0,
+      "mean": 12.888280275464982,
+      "std": 6.342739415645944,
+      "min": 0.0,
+      "25%": 9.393398581435644,
+      "50%": 12.19144317840891,
+      "75%": 15.066147225419535,
+      "max": 85.95722022642042
+    },
+    {
+      "label": "deviasi_rute_km",
+      "count": 49508.0,
+      "mean": 1.541746385132225,
+      "std": 0.894109576053457,
+      "min": 0.0,
+      "25%": 0.9585256434004087,
+      "50%": 1.503864272528968,
+      "75%": 2.054383713444829,
+      "max": 12.363038390875708
+    },
+    {
+      "label": "jumlah_stop_takterdaftar",
+      "count": 49508.0,
+      "mean": 0.12191968974711158,
+      "std": 0.3665055422429372,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.0,
+      "75%": 0.0,
+      "max": 5.0
+    }
+  ],
+  "ringkasan_fitur_rekayasa": [
+    {
+      "label": "residual_pct",
+      "count": 49508.0,
+      "mean": 0.17799277155436344,
+      "std": 0.3706636801327846,
+      "min": -1.9189082412391858,
+      "25%": -0.056032300767625075,
+      "50%": 0.1726598038002832,
+      "75%": 0.4054669545658819,
+      "max": 2.6645052266007268
+    },
+    {
+      "label": "z_score",
+      "count": 49508.0,
+      "mean": 0.6079774468085226,
+      "std": 1.2510471964360879,
+      "min": -5.551405875579216,
+      "25%": -0.19147463135813347,
+      "50%": 0.5912570600493916,
+      "75%": 1.3867224846399402,
+      "max": 8.497434886457444
+    },
+    {
+      "label": "resid_adj",
+      "count": 49508.0,
+      "mean": 0.05031463679404475,
+      "std": 0.35572119804411856,
+      "min": -2.002046841653816,
+      "25%": -0.17368233475894795,
+      "50%": 0.044029770100830964,
+      "75%": 0.2702751568545458,
+      "max": 2.477521565151305
+    },
+    {
+      "label": "z_adj",
+      "count": 49508.0,
+      "mean": 0.10781246883431608,
+      "std": 1.1944165902416006,
+      "min": -6.147854205301486,
+      "25%": -0.6533519793760703,
+      "50%": 0.08604562221280983,
+      "75%": 0.8594553523485081,
+      "max": 7.687270390377619
+    },
+    {
+      "label": "edge_baseline",
+      "count": 49508.0,
+      "mean": 0.1276781347603187,
+      "std": 0.11154696338853448,
+      "min": -0.5072249399402,
+      "25%": 0.09270661343086326,
+      "50%": 0.13201397955535765,
+      "75%": 0.16587924426883316,
+      "max": 0.9136212811528858
+    },
+    {
+      "label": "term_baseline",
+      "count": 49508.0,
+      "mean": 0.018287943368905282,
+      "std": 0.015879444724152602,
+      "min": -0.13837879792392555,
+      "25%": 0.0072270243409001955,
+      "50%": 0.01708901633412009,
+      "75%": 0.029837877140475137,
+      "max": 0.09447852546054993
+    },
+    {
+      "label": "berhenti_menit",
+      "count": 49508.0,
+      "mean": 12.888280275464982,
+      "std": 6.342739415645944,
+      "min": 0.0,
+      "25%": 9.393398581435644,
+      "50%": 12.19144317840891,
+      "75%": 15.066147225419535,
+      "max": 85.95722022642042
+    },
+    {
+      "label": "deviasi_rute_km",
+      "count": 49508.0,
+      "mean": 1.541746385132225,
+      "std": 0.894109576053457,
+      "min": 0.0,
+      "25%": 0.9585256434004087,
+      "50%": 1.503864272528968,
+      "75%": 2.054383713444829,
+      "max": 12.363038390875708
+    },
+    {
+      "label": "jumlah_stop_takterdaftar",
+      "count": 49508.0,
+      "mean": 0.12191968974711158,
+      "std": 0.3665055422429372,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.0,
+      "75%": 0.0,
+      "max": 5.0
+    },
+    {
+      "label": "crew_unreg_stops",
+      "count": 49508.0,
+      "mean": 20.208127979316473,
+      "std": 19.342105966761867,
+      "min": 0.0,
+      "25%": 9.0,
+      "50%": 18.0,
+      "75%": 27.0,
+      "max": 230.0
+    },
+    {
+      "label": "berhenti_log",
+      "count": 49508.0,
+      "mean": 2.5457506438777524,
+      "std": 0.41887741649129645,
+      "min": 0.0,
+      "25%": 2.341170852820548,
+      "50%": 2.5795683752832193,
+      "75%": 2.7767144014697194,
+      "max": 4.465416276184507
+    },
+    {
+      "label": "inter_z_stop",
+      "count": 49508.0,
+      "mean": 0.3057747448232504,
+      "std": 3.187308036812558,
+      "min": -21.962952775167974,
+      "25%": -1.6281986569416733,
+      "50%": 0.20581903369364962,
+      "75%": 2.1324762399152655,
+      "max": 29.528586995175583
+    },
+    {
+      "label": "crew_resid_mean",
+      "count": 49508.0,
+      "mean": 0.13028145089521975,
+      "std": 0.10121117846518941,
+      "min": -0.3117773646383442,
+      "25%": 0.08692713751287616,
+      "50%": 0.13145629862841013,
+      "75%": 0.17320638877251418,
+      "max": 0.5417159345077273
+    },
+    {
+      "label": "crew_resid_std",
+      "count": 49508.0,
+      "mean": 1.101434520890083,
+      "std": 0.19800369173644775,
+      "min": 0.012166333247043554,
+      "25%": 1.0079311482467568,
+      "50%": 1.059756553647699,
+      "75%": 1.1319423536543232,
+      "max": 4.425591668996647
+    },
+    {
+      "label": "crew_cusum",
+      "count": 49508.0,
+      "mean": 0.8275736954756295,
+      "std": 1.0060778470935587,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.4043670936770538,
+      "75%": 1.4241308746928794,
+      "max": 3.9999668137698894
+    },
+    {
+      "label": "crew_ewma",
+      "count": 49508.0,
+      "mean": 0.04918510708990999,
+      "std": 0.47837687392373435,
+      "min": -1.9618507548373927,
+      "25%": -0.264240413807609,
+      "50%": 0.03277632953499561,
+      "75%": 0.34054380159143366,
+      "max": 4.163970900343627
+    },
+    {
+      "label": "crew_ewma_slow",
+      "count": 49508.0,
+      "mean": 0.047171863390816623,
+      "std": 0.28797020881411245,
+      "min": -0.9507247540748894,
+      "25%": -0.13673504142816195,
+      "50%": 0.03143644364317812,
+      "75%": 0.20325990160805482,
+      "max": 2.86494740071197
+    },
+    {
+      "label": "crew_ewma_diff",
+      "count": 49508.0,
+      "mean": 0.0020132436990933627,
+      "std": 0.27855076378193316,
+      "min": -1.2852072652938622,
+      "25%": -0.1815986810079301,
+      "50%": -0.00014099281481465276,
+      "75%": 0.18264143490343426,
+      "max": 2.2235730086877834
+    },
+    {
+      "label": "crew_roll30",
+      "count": 49508.0,
+      "mean": 0.046292598371791574,
+      "std": 0.2553051041984128,
+      "min": -1.3578686574823224,
+      "25%": -0.10707366445336522,
+      "50%": 0.026854076985700925,
+      "75%": 0.17427095341017898,
+      "max": 2.1171912494846103
+    },
+    {
+      "label": "crew_roll7",
+      "count": 49508.0,
+      "mean": 0.049043122421523914,
+      "std": 0.43714075554205134,
+      "min": -2.168316756411786,
+      "25%": -0.2336145929159313,
+      "50%": 0.029618034872487327,
+      "75%": 0.3097399849873895,
+      "max": 4.17150255700962
+    },
+    {
+      "label": "crew_roll_diff",
+      "count": 49508.0,
+      "mean": 0.0027505240497323405,
+      "std": 0.3525915110609435,
+      "min": -2.168316756411786,
+      "25%": -0.22577406325872096,
+      "50%": 0.0,
+      "75%": 0.2281061979679135,
+      "max": 2.9881532054290525
+    },
+    {
+      "label": "hotspot_proximity",
+      "count": 49508.0,
+      "mean": 0.038977167735797846,
+      "std": 0.17705971145876323,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.0,
+      "75%": 0.0,
+      "max": 0.9997543047380673
+    },
+    {
+      "label": "in_hotspot",
+      "count": 49508.0,
+      "mean": 0.04154884059141957,
+      "std": 0.19955785832394582,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.0,
+      "75%": 0.0,
+      "max": 1.0
+    },
+    {
+      "label": "hotspot_size",
+      "count": 49508.0,
+      "mean": 9.412801971398562,
+      "std": 68.81171253422171,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.0,
+      "75%": 0.0,
+      "max": 1166.0
+    },
+    {
+      "label": "truck_zmean_prev",
+      "count": 49508.0,
+      "mean": 0.056997400055161115,
+      "std": 0.5154335581943581,
+      "min": -2.6584676209556095,
+      "25%": -0.011551490788450788,
+      "50%": 0.05934484775276451,
+      "75%": 0.13888854797534092,
+      "max": 4.818914064143053
+    },
+    {
+      "label": "pair_n",
+      "count": 49508.0,
+      "mean": 16.042477983356225,
+      "std": 14.1087681509035,
+      "min": 0.0,
+      "25%": 4.0,
+      "50%": 14.0,
+      "75%": 25.0,
+      "max": 100.0
+    },
+    {
+      "label": "pair_zscore",
+      "count": 49508.0,
+      "mean": 0.10721370658422337,
+      "std": 1.1620724377408713,
+      "min": -5.1243862387160535,
+      "25%": -0.5161972033109676,
+      "50%": 0.0,
+      "75%": 0.610053910633471,
+      "max": 10.367649258093465
+    },
+    {
+      "label": "pair_excess_crew",
+      "count": 49508.0,
+      "mean": -0.0009355462021263435,
+      "std": 0.2050662465843474,
+      "min": -1.09422649378998,
+      "25%": -0.11293571720871155,
+      "50%": 0.0,
+      "75%": 0.09570751408022027,
+      "max": 1.4925119616960218
+    },
+    {
+      "label": "pair_excess_spbu",
+      "count": 49508.0,
+      "mean": -0.0005842340112088101,
+      "std": 0.20641863095536644,
+      "min": -0.9045098805405423,
+      "25%": -0.1067324958715726,
+      "50%": -0.0,
+      "75%": 0.08259200911008904,
+      "max": 1.462385862438245
+    }
+  ],
+  "ringkasan_klaster_hotspot": [
+    {
+      "in_hotspot": 0,
+      "jumlah_trip": 47451,
+      "prevalensi": 0.014857431877094266
+    },
+    {
+      "in_hotspot": 1,
+      "jumlah_trip": 2057,
+      "prevalensi": 0.18522119591638309
+    }
+  ],
+  "ringkasan_partisi_temporal": [
+    {
+      "split": "train",
+      "trip": 29648,
+      "anomali": 426,
+      "prevalensi": 0.014368591473286563,
+      "hari_awal": 1,
+      "hari_akhir": 108
+    },
+    {
+      "split": "val",
+      "trip": 9915,
+      "anomali": 262,
+      "prevalensi": 0.026424609178013113,
+      "hari_awal": 109,
+      "hari_akhir": 144
+    },
+    {
+      "split": "test",
+      "trip": 9945,
+      "anomali": 398,
+      "prevalensi": 0.0400201106083459,
+      "hari_awal": 145,
+      "hari_akhir": 180
+    }
+  ],
+  "ringkasan_peran_crew": [
+    {
+      "pelaku": 4,
+      "kolusi": 9,
+      "decoy": 1
+    },
+    {
+      "pelaku": 5,
+      "kolusi": 5,
+      "decoy": 4
+    },
+    {
+      "pelaku": 1,
+      "kolusi": 4,
+      "decoy": 5
+    }
+  ],
+  "ringkasan_struktur_kolusi": [
+    {
+      "pasangan": 14,
+      "crew": 9,
+      "spbu": 8,
+      "kuat_rata": 0.47553158960746034,
+      "skala_rata": 0.8309811320335928
+    },
+    {
+      "pasangan": 8,
+      "crew": 5,
+      "spbu": 4,
+      "kuat_rata": 0.5815474712122968,
+      "skala_rata": 0.7927366719904894
+    },
+    {
+      "pasangan": 6,
+      "crew": 4,
+      "spbu": 4,
+      "kuat_rata": 0.49846799499988065,
+      "skala_rata": 0.7266737728857074
+    }
+  ],
+  "ringkasan_sumber_residual": [
+    {
+      "sumber": "wajar biasa",
+      "size": 38300,
+      "mean": 0.161577159325085,
+      "median": 0.16102841273460833
+    },
+    {
+      "sumber": "bias truk",
+      "size": 6378,
+      "mean": 0.1461968795886743,
+      "median": 0.1762525900611387
+    },
+    {
+      "sumber": "bias ATG",
+      "size": 3458,
+      "mean": 0.1696711826443865,
+      "median": 0.18485105208445557
+    },
+    {
+      "sumber": "air etanol",
+      "size": 286,
+      "mean": 0.5997151119205568,
+      "median": 0.6159853669410127
+    },
+    {
+      "sumber": "anomali",
+      "size": 1086,
+      "mean": 0.8590937038236984,
+      "median": 0.8235051595394882
+    }
+  ],
+  "robustness_menurut_kebijakan_investigasi": [
+    {
+      "model": "B_graph",
+      "B_graph": "0.733 ± 0.045",
+      "B_plus": "0.731 ± 0.045"
+    },
+    {
+      "model": "B_plus",
+      "B_graph": "0.733 ± 0.045",
+      "B_plus": "0.732 ± 0.044"
+    },
+    {
+      "model": "IF",
+      "B_graph": "0.481 ± 0.057",
+      "B_plus": "0.481 ± 0.057"
+    },
+    {
+      "model": "IF_AAD",
+      "B_graph": "0.580 ± 0.055",
+      "B_plus": "0.586 ± 0.052"
+    },
+    {
+      "model": "baseline (adj-z-score)",
+      "B_graph": "0.430 ± 0.042",
+      "B_plus": "0.430 ± 0.042"
+    },
+    {
+      "model": "baseline (z-score)",
+      "B_graph": "0.362 ± 0.038",
+      "B_plus": "0.362 ± 0.038"
+    }
+  ],
+  "robustness_trip_20_seed": [
+    {
+      "model": "B_plus",
+      "PR_AUC": "0.732 ± 0.044",
+      "P": "0.442 ± 0.052",
+      "R": "0.745 ± 0.045",
+      "F1": "0.545 ± 0.043",
+      "vol_rec": "0.844 ± 0.026",
+      "R_baru": "0.539 ± 0.098",
+      "R_lama": "0.762 ± 0.044",
+      "FA_per_hari": "7.461 ± 0.687"
+    },
+    {
+      "model": "B_graph",
+      "PR_AUC": "0.731 ± 0.045",
+      "P": "0.440 ± 0.052",
+      "R": "0.742 ± 0.046",
+      "F1": "0.542 ± 0.043",
+      "vol_rec": "0.840 ± 0.027",
+      "R_baru": "0.553 ± 0.110",
+      "R_lama": "0.760 ± 0.044",
+      "FA_per_hari": "7.490 ± 0.686"
+    },
+    {
+      "model": "IF_AAD",
+      "PR_AUC": "0.586 ± 0.052",
+      "P": "0.366 ± 0.047",
+      "R": "0.614 ± 0.045",
+      "F1": "0.450 ± 0.042",
+      "vol_rec": "0.744 ± 0.030",
+      "R_baru": "0.604 ± 0.091",
+      "R_lama": "0.614 ± 0.046",
+      "FA_per_hari": "8.481 ± 0.625"
+    },
+    {
+      "model": "IF",
+      "PR_AUC": "0.481 ± 0.057",
+      "P": "0.317 ± 0.047",
+      "R": "0.526 ± 0.044",
+      "F1": "0.388 ± 0.045",
+      "vol_rec": "0.658 ± 0.037",
+      "R_baru": "0.509 ± 0.090",
+      "R_lama": "0.527 ± 0.047",
+      "FA_per_hari": "9.143 ± 0.620"
+    },
+    {
+      "model": "baseline (adj-z-score)",
+      "PR_AUC": "0.430 ± 0.042",
+      "P": "0.302 ± 0.035",
+      "R": "0.511 ± 0.037",
+      "F1": "0.372 ± 0.030",
+      "vol_rec": "0.659 ± 0.028",
+      "R_baru": "0.554 ± 0.105",
+      "R_lama": "0.509 ± 0.038",
+      "FA_per_hari": "9.339 ± 0.466"
+    },
+    {
+      "model": "baseline (z-score)",
+      "PR_AUC": "0.362 ± 0.038",
+      "P": "0.281 ± 0.033",
+      "R": "0.476 ± 0.038",
+      "F1": "0.346 ± 0.029",
+      "vol_rec": "0.619 ± 0.031",
+      "R_baru": "0.530 ± 0.103",
+      "R_lama": "0.473 ± 0.039",
+      "FA_per_hari": "9.625 ± 0.442"
+    }
+  ],
+  "scorecard_kinerja_nadi": [
+    {
+      "dimensi_evaluasi": "PR AUC Trip vs baseline (z-score)",
+      "pembanding": "0.362 ± 0.038",
+      "sistem_nadi": "0.732 ± 0.044",
+      "selisih_berpasangan_[ci95]": "+0.370 [+0.333, +0.407]",
+      "p_wilcoxon": 0.0
+    },
+    {
+      "dimensi_evaluasi": "PR AUC Trip vs baseline (adj-z-score)",
+      "pembanding": "0.430 ± 0.042",
+      "sistem_nadi": "0.732 ± 0.044",
+      "selisih_berpasangan_[ci95]": "+0.302 [+0.271, +0.333]",
+      "p_wilcoxon": 0.0
+    },
+    {
+      "dimensi_evaluasi": "Recall Top 5% vs baseline (adj-z-score)",
+      "pembanding": "0.511 ± 0.037",
+      "sistem_nadi": "0.745 ± 0.045",
+      "selisih_berpasangan_[ci95]": "+0.234 [+0.209, +0.259]",
+      "p_wilcoxon": 0.0
+    },
+    {
+      "dimensi_evaluasi": "Volume Curian Tertangkap vs baseline (adj-z-score)",
+      "pembanding": "0.659 ± 0.028",
+      "sistem_nadi": "0.844 ± 0.026",
+      "selisih_berpasangan_[ci95]": "+0.186 [+0.164, +0.207]",
+      "p_wilcoxon": 0.0
+    },
+    {
+      "dimensi_evaluasi": "Recall 14 Hari Pertama Aktor vs baseline (adj-z-score)",
+      "pembanding": "0.554 ± 0.105",
+      "sistem_nadi": "0.539 ± 0.098",
+      "selisih_berpasangan_[ci95]": "-0.015 [-0.108, +0.078]",
+      "p_wilcoxon": 0.796
+    },
+    {
+      "dimensi_evaluasi": "PR AUC B_plus vs B_graph",
+      "pembanding": "0.731 ± 0.045",
+      "sistem_nadi": "0.732 ± 0.044",
+      "selisih_berpasangan_[ci95]": "+0.000 [-0.004, +0.004]",
+      "p_wilcoxon": 0.8983
+    },
+    {
+      "dimensi_evaluasi": "AP Kolusi: excess_crew vs skor_pasangan",
+      "pembanding": "0.488 ± 0.055",
+      "sistem_nadi": "0.643 ± 0.035",
+      "selisih_berpasangan_[ci95]": "+0.155 [+0.109, +0.200]",
+      "p_wilcoxon": 0.0
+    }
+  ],
+  "sensitivitas_ambang_aturan_sebab": [
+    {
+      "skala_ambang": 0.5,
+      "akurasi_ketat": 0.7604790419161677
+    },
+    {
+      "skala_ambang": 1.0,
+      "akurasi_ketat": 0.6796407185628742
+    },
+    {
+      "skala_ambang": 1.5,
+      "akurasi_ketat": 0.6227544910179641
+    }
+  ],
+  "sensitivitas_parameter_generator": [
+    {
+      "varian": "dasar",
+      "PR_AUC_Bplus": "0.755 ± 0.111",
+      "PR_AUC_Bgraph": "0.751 ± 0.112",
+      "PR_AUC_base_adj": "0.470 ± 0.134",
+      "selisih_Bplus_vs_base": "0.286 ± 0.047",
+      "R_Bplus": "0.732 ± 0.115"
+    },
+    {
+      "varian": "trace_025",
+      "PR_AUC_Bplus": "0.691 ± 0.109",
+      "PR_AUC_Bgraph": "0.687 ± 0.099",
+      "PR_AUC_base_adj": "0.470 ± 0.134",
+      "selisih_Bplus_vs_base": "0.222 ± 0.047",
+      "R_Bplus": "0.691 ± 0.104"
+    },
+    {
+      "varian": "trace_000",
+      "PR_AUC_Bplus": "0.684 ± 0.111",
+      "PR_AUC_Bgraph": "0.680 ± 0.110",
+      "PR_AUC_base_adj": "0.470 ± 0.134",
+      "selisih_Bplus_vs_base": "0.215 ± 0.046",
+      "R_Bplus": "0.693 ± 0.111"
+    },
+    {
+      "varian": "noise_x15",
+      "PR_AUC_Bplus": "0.675 ± 0.117",
+      "PR_AUC_Bgraph": "0.670 ± 0.116",
+      "PR_AUC_base_adj": "0.296 ± 0.101",
+      "selisih_Bplus_vs_base": "0.378 ± 0.058",
+      "R_Bplus": "0.661 ± 0.119"
+    },
+    {
+      "varian": "ukuran_x07",
+      "PR_AUC_Bplus": "0.605 ± 0.131",
+      "PR_AUC_Bgraph": "0.604 ± 0.132",
+      "PR_AUC_base_adj": "0.139 ± 0.061",
+      "selisih_Bplus_vs_base": "0.467 ± 0.092",
+      "R_Bplus": "0.576 ± 0.131"
+    },
+    {
+      "varian": "ukuran_x10",
+      "PR_AUC_Bplus": "0.666 ± 0.122",
+      "PR_AUC_Bgraph": "0.661 ± 0.121",
+      "PR_AUC_base_adj": "0.262 ± 0.106",
+      "selisih_Bplus_vs_base": "0.404 ± 0.067",
+      "R_Bplus": "0.653 ± 0.124"
+    }
+  ],
+  "tabel_ambang_batas_pembanding": [
+    {
+      "ambang": 0.08,
+      "f1_val": 0.6945898778359512,
+      "trip_ditandai": 488,
+      "persen_trip_ditandai": 0.04906988436400201,
+      "presisi": 0.5737704918032787,
+      "recall": 0.7035175879396985,
+      "f1": 0.6320541760722348
+    },
+    {
+      "ambang": 0.1,
+      "f1_val": 0.7218045112781954,
+      "trip_ditandai": 425,
+      "persen_trip_ditandai": 0.042735042735042736,
+      "presisi": 0.64,
+      "recall": 0.6834170854271356,
+      "f1": 0.660996354799514
+    },
+    {
+      "ambang": 0.15,
+      "f1_val": 0.7583333333333333,
+      "trip_ditandai": 342,
+      "persen_trip_ditandai": 0.034389140271493215,
+      "presisi": 0.7602339181286549,
+      "recall": 0.6532663316582915,
+      "f1": 0.7027027027027027
+    },
+    {
+      "ambang": 0.2,
+      "f1_val": 0.7510729613733905,
+      "trip_ditandai": 293,
+      "persen_trip_ditandai": 0.02946204122674711,
+      "presisi": 0.8361774744027304,
+      "recall": 0.6155778894472361,
+      "f1": 0.7091172214182344
+    },
+    {
+      "ambang": 0.3,
+      "f1_val": 0.7214611872146118,
+      "trip_ditandai": 245,
+      "persen_trip_ditandai": 0.024635495223730517,
+      "presisi": 0.9183673469387755,
+      "recall": 0.5653266331658291,
+      "f1": 0.6998444790046656
+    },
+    {
+      "ambang": 0.4,
+      "f1_val": 0.6843373493975904,
+      "trip_ditandai": 227,
+      "persen_trip_ditandai": 0.022825540472599295,
+      "presisi": 0.9383259911894273,
+      "recall": 0.535175879396985,
+      "f1": 0.6816
+    },
+    {
+      "ambang": 0.5,
+      "f1_val": 0.6464646464646465,
+      "trip_ditandai": 202,
+      "persen_trip_ditandai": 0.02031171442936149,
+      "presisi": 0.9702970297029703,
+      "recall": 0.49246231155778897,
+      "f1": 0.6533333333333333
+    },
+    {
+      "ambang": 0.6,
+      "f1_val": 0.612565445026178,
+      "trip_ditandai": 178,
+      "persen_trip_ditandai": 0.01789844142785319,
+      "presisi": 0.9831460674157303,
+      "recall": 0.4396984924623116,
+      "f1": 0.6076388888888888
+    }
+  ],
+  "tabel_vcf_astm": [
+    {
+      "suhu_C": 20,
+      "VCF_E10": 0.9952432991055356,
+      "VCF_E20": 0.9950928714883847,
+      "VCF_E50": 0.9944910303347757
+    },
+    {
+      "suhu_C": 25,
+      "VCF_E10": 0.9904734676768823,
+      "VCF_E20": 0.9901717837171039,
+      "VCF_E50": 0.9889645423740998
+    },
+    {
+      "suhu_C": 30,
+      "VCF_E10": 0.9856909121941936,
+      "VCF_E20": 0.9852371828745151,
+      "VCF_E50": 0.9834211669336245
+    },
+    {
+      "suhu_C": 35,
+      "VCF_E10": 0.9808960385568998,
+      "VCF_E20": 0.9802895144873599,
+      "VCF_E50": 0.9778615337535008
+    },
+    {
+      "suhu_C": 40,
+      "VCF_E10": 0.9760892520280426,
+      "VCF_E20": 0.9753292233557723,
+      "VCF_E50": 0.9722862713828361
+    },
+    {
+      "suhu_C": 45,
+      "VCF_E10": 0.9712709571789957,
+      "VCF_E20": 0.9703567534887518,
+      "VCF_E50": 0.9666960070650882
+    },
+    {
+      "suhu_C": 50,
+      "VCF_E10": 0.9664415578345777,
+      "VCF_E20": 0.965372548040113,
+      "VCF_E50": 0.9610913666244268
+    }
+  ],
+  "titik_operasi_kapasitas_vs_ambang": [
+    {
+      "definisi": "kapasitas harian 5% (utama)",
+      "trip_ditandai": 480,
+      "persen_trip_ditandai": 0.048265460030165915,
+      "presisi": 0.5645833333333333,
+      "recall": 0.6809045226130653,
+      "f1": 0.6173120728929385
+    },
+    {
+      "definisi": "ambang 0.15 dari F1 validasi (pembanding)",
+      "trip_ditandai": 342,
+      "persen_trip_ditandai": 0.034389140271493215,
+      "presisi": 0.7602339181286549,
+      "recall": 0.6532663316582915,
+      "f1": 0.7027027027027027
+    }
+  ],
+  "uji_berpasangan_ablasi_tier": [
+    {
+      "pembanding": "Tier 1 vs baseline adj-z",
+      "metrik": "PR_AUC",
+      "selisih_rata": 0.09978207283348359,
+      "ci95_bawah": 0.07842355354780284,
+      "ci95_atas": 0.12114059211916434,
+      "p_wilcoxon": 0.0625
+    },
+    {
+      "pembanding": "Tier 1+2 vs Tier 1",
+      "metrik": "PR_AUC",
+      "selisih_rata": 0.1611837622828387,
+      "ci95_bawah": 0.11726188317799398,
+      "ci95_atas": 0.20510564138768345,
+      "p_wilcoxon": 0.0625
+    },
+    {
+      "pembanding": "Tier 1+2+3 vs Tier 1+2",
+      "metrik": "PR_AUC",
+      "selisih_rata": 0.024891279249605436,
+      "ci95_bawah": 0.006682298190494547,
+      "ci95_atas": 0.043100260308716325,
+      "p_wilcoxon": 0.0625
+    },
+    {
+      "pembanding": "Tier 1+2+3 vs baseline adj-z",
+      "metrik": "PR_AUC",
+      "selisih_rata": 0.28585711436592776,
+      "ci95_bawah": 0.23878297411194394,
+      "ci95_atas": 0.3329312546199116,
+      "p_wilcoxon": 0.0625
+    }
+  ],
+  "uji_berpasangan_skenario_sulit": [
+    {
+      "pembanding": "B_plus vs baseline (adj-z-score)",
+      "metrik": "PR_AUC",
+      "selisih_rata": 0.3231124317320902,
+      "ci95_bawah": 0.27786458347774845,
+      "ci95_atas": 0.36836027998643195,
+      "p_wilcoxon": 1.9073486328125e-06
+    },
+    {
+      "pembanding": "B_plus vs B_graph",
+      "metrik": "PR_AUC",
+      "selisih_rata": 0.011594612979756285,
+      "ci95_bawah": 0.0020121652260217168,
+      "ci95_atas": 0.021177060733490856,
+      "p_wilcoxon": 0.01923370361328125
+    },
+    {
+      "pembanding": "B_graph vs baseline (adj-z-score)",
+      "metrik": "PR_AUC",
+      "selisih_rata": 0.31151781875233386,
+      "ci95_bawah": 0.269566043248327,
+      "ci95_atas": 0.3534695942563407,
+      "p_wilcoxon": 1.9073486328125e-06
+    }
+  ],
+  "uji_berpasangan_trip": [
+    {
+      "pembanding": "B_plus vs B_graph",
+      "metrik": "PR_AUC",
+      "selisih_rata": 0.00019735177995766628,
+      "ci95_bawah": -0.003958809202700711,
+      "ci95_atas": 0.004353512762616044,
+      "p_wilcoxon": 0.8983173370361328
+    },
+    {
+      "pembanding": "B_plus vs B_graph",
+      "metrik": "R",
+      "selisih_rata": 0.003578708331523445,
+      "ci95_bawah": -0.002679423575258088,
+      "ci95_atas": 0.009836840238304978,
+      "p_wilcoxon": 0.12515345696288432
+    },
+    {
+      "pembanding": "B_plus vs B_graph",
+      "metrik": "vol_rec",
+      "selisih_rata": 0.0037656866388262157,
+      "ci95_bawah": -0.0014050766763307751,
+      "ci95_atas": 0.008936449953983207,
+      "p_wilcoxon": 0.15364646911621094
+    },
+    {
+      "pembanding": "B_plus vs B_graph",
+      "metrik": "R_baru",
+      "selisih_rata": -0.014797461657926786,
+      "ci95_bawah": -0.08562717314193823,
+      "ci95_atas": 0.05603224982608466,
+      "p_wilcoxon": 0.3719737719646685
+    },
+    {
+      "pembanding": "B_plus vs IF_AAD",
+      "metrik": "PR_AUC",
+      "selisih_rata": 0.14547755447405789,
+      "ci95_bawah": 0.12458375680825207,
+      "ci95_atas": 0.1663713521398637,
+      "p_wilcoxon": 1.9073486328125e-06
+    },
+    {
+      "pembanding": "B_plus vs IF_AAD",
+      "metrik": "R",
+      "selisih_rata": 0.13113628727422605,
+      "ci95_bawah": 0.11470342488754662,
+      "ci95_atas": 0.14756914966090548,
+      "p_wilcoxon": 1.9073486328125e-06
+    },
+    {
+      "pembanding": "B_plus vs IF_AAD",
+      "metrik": "vol_rec",
+      "selisih_rata": 0.09996586491907096,
+      "ci95_bawah": 0.08438396717438354,
+      "ci95_atas": 0.11554776266375838,
+      "p_wilcoxon": 1.9073486328125e-06
+    },
+    {
+      "pembanding": "B_plus vs IF_AAD",
+      "metrik": "R_baru",
+      "selisih_rata": -0.06548912332342567,
+      "ci95_bawah": -0.12617684287896425,
+      "ci95_atas": -0.004801403767887097,
+      "p_wilcoxon": 0.0199501784368676
+    },
+    {
+      "pembanding": "B_plus vs baseline (adj-z-score)",
+      "metrik": "PR_AUC",
+      "selisih_rata": 0.30212378549221136,
+      "ci95_bawah": 0.27117777833348705,
+      "ci95_atas": 0.33306979265093567,
+      "p_wilcoxon": 1.9073486328125e-06
+    },
+    {
+      "pembanding": "B_plus vs baseline (adj-z-score)",
+      "metrik": "R",
+      "selisih_rata": 0.23422808483385849,
+      "ci95_bawah": 0.20926246443084887,
+      "ci95_atas": 0.2591937052368681,
+      "p_wilcoxon": 1.9073486328125e-06
+    },
+    {
+      "pembanding": "B_plus vs baseline (adj-z-score)",
+      "metrik": "vol_rec",
+      "selisih_rata": 0.18556276330483032,
+      "ci95_bawah": 0.16432825140992205,
+      "ci95_atas": 0.2067972751997386,
+      "p_wilcoxon": 1.9073486328125e-06
+    },
+    {
+      "pembanding": "B_plus vs baseline (adj-z-score)",
+      "metrik": "R_baru",
+      "selisih_rata": -0.01499476108487737,
+      "ci95_bawah": -0.10805117765990496,
+      "ci95_atas": 0.07806165549015023,
+      "p_wilcoxon": 0.7959872153886274
+    },
+    {
+      "pembanding": "B_plus vs baseline (z-score)",
+      "metrik": "PR_AUC",
+      "selisih_rata": 0.37000375031841115,
+      "ci95_bawah": 0.33299175096528666,
+      "ci95_atas": 0.40701574967153564,
+      "p_wilcoxon": 1.9073486328125e-06
+    },
+    {
+      "pembanding": "B_plus vs baseline (z-score)",
+      "metrik": "R",
+      "selisih_rata": 0.26958788628751973,
+      "ci95_bawah": 0.24256624959882772,
+      "ci95_atas": 0.29660952297621174,
+      "p_wilcoxon": 1.9073486328125e-06
+    },
+    {
+      "pembanding": "B_plus vs baseline (z-score)",
+      "metrik": "vol_rec",
+      "selisih_rata": 0.22569804118290357,
+      "ci95_bawah": 0.20123854267539715,
+      "ci95_atas": 0.25015753969041,
+      "p_wilcoxon": 1.9073486328125e-06
+    },
+    {
+      "pembanding": "B_plus vs baseline (z-score)",
+      "metrik": "R_baru",
+      "selisih_rata": 0.008207576187227342,
+      "ci95_bawah": -0.08257706994688582,
+      "ci95_atas": 0.0989922223213405,
+      "p_wilcoxon": 0.43256967723381
+    }
+  ],
+  "uji_kausalitas_fitur": [
+    {
+      "residual_pct": 0.0,
+      "z_score": 0.0,
+      "resid_adj": 0.0,
+      "z_adj": 0.0,
+      "edge_baseline": 0.0,
+      "term_baseline": 0.0,
+      "berhenti_menit": 0.0,
+      "deviasi_rute_km": 0.0,
+      "jumlah_stop_takterdaftar": 0.0,
+      "crew_unreg_stops": 0.0,
+      "berhenti_log": 0.0,
+      "inter_z_stop": 0.0,
+      "crew_resid_mean": 0.0,
+      "crew_resid_std": 0.0,
+      "crew_cusum": 0.0,
+      "crew_ewma": 0.0,
+      "crew_ewma_slow": 0.0,
+      "crew_ewma_diff": 0.0,
+      "crew_roll30": 0.0,
+      "crew_roll7": 0.0,
+      "crew_roll_diff": 0.0,
+      "hotspot_proximity": 0.0,
+      "in_hotspot": 0.0,
+      "hotspot_size": 0.0,
+      "truck_zmean_prev": 0.0,
+      "pair_n": 0.0,
+      "pair_zscore": 0.0,
+      "pair_excess_crew": 0.0,
+      "pair_excess_spbu": 0.0
+    }
+  ],
+  "validasi_dugaan_sebab_vs_modus": [
+    {
+      "modus": "M1",
+      "akumulasi deviasi rute dan susut volume di atas batas wajar": 0.0,
+      "bongkar di lokasi tak terdaftar atau klaster hotspot": 0.9135802469135802,
+      "indikasi kolusi relasional kru dan SPBU berulang": 0.0,
+      "pola akumulasi susut mikro berulang pada kru (CUSUM)": 0.0,
+      "selisih volume muat dan terima tinggi (indikasi curian / periksa ATG)": 0.08641975308641975
+    },
+    {
+      "modus": "M2",
+      "akumulasi deviasi rute dan susut volume di atas batas wajar": 0.5822784810126582,
+      "bongkar di lokasi tak terdaftar atau klaster hotspot": 0.08860759493670886,
+      "indikasi kolusi relasional kru dan SPBU berulang": 0.06329113924050633,
+      "pola akumulasi susut mikro berulang pada kru (CUSUM)": 0.20253164556962025,
+      "selisih volume muat dan terima tinggi (indikasi curian / periksa ATG)": 0.06329113924050633
+    },
+    {
+      "modus": "M3",
+      "akumulasi deviasi rute dan susut volume di atas batas wajar": 0.05063291139240506,
+      "bongkar di lokasi tak terdaftar atau klaster hotspot": 0.8987341772151899,
+      "indikasi kolusi relasional kru dan SPBU berulang": 0.012658227848101266,
+      "pola akumulasi susut mikro berulang pada kru (CUSUM)": 0.02531645569620253,
+      "selisih volume muat dan terima tinggi (indikasi curian / periksa ATG)": 0.012658227848101266
+    },
+    {
+      "modus": "M4",
+      "akumulasi deviasi rute dan susut volume di atas batas wajar": 0.10526315789473684,
+      "bongkar di lokasi tak terdaftar atau klaster hotspot": 0.05263157894736842,
+      "indikasi kolusi relasional kru dan SPBU berulang": 0.6947368421052632,
+      "pola akumulasi susut mikro berulang pada kru (CUSUM)": 0.05263157894736842,
+      "selisih volume muat dan terima tinggi (indikasi curian / periksa ATG)": 0.09473684210526316
+    }
+  ]
+}

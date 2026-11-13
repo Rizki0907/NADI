@@ -1,0 +1,6 @@
+trip_id,crew_id,modus,skor_prob,kontributor_utama
+44002,C098,M1,0.9361347635598796,"deviasi_rute_km (+0.98), inter_z_stop (+0.82), berhenti_menit (+0.54)"
+49331,C062,M2,0.029652025234805143,"resid_adj (+0.40), crew_resid_std (-0.38), inter_z_stop (-0.33)"
+48488,C038,M4,0.9118293389058517,"inter_z_stop (+0.87), resid_adj (+0.73), pair_zscore (+0.60)"
+41092,C069,M2,0.004492817871862301,"crew_roll30 (+0.46), inter_z_stop (-0.34), resid_adj (-0.32)"
+48233,C098,M1,0.8972908258052974,"deviasi_rute_km (+0.89), inter_z_stop (+0.85), crew_resid_std (+0.46)"

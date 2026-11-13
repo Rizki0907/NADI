@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-canvas: #f2f5f7;
+    --bg-surface: #ffffff;
+    --bg-subtle: #e6ecf0;
+    --bg-band: #e0e8ee;
+    --bg-spotlight: #0b1f2e;
+    --text-on-spotlight: #f8fafc;
+    --border-hairline: #d4dde4;
+    --border-strong: #b0bec9;
+    --text-primary: #0e1720;
+    --text-secondary: #334150;
+    --text-muted: #58687a;
+    --accent-blue: #0057a3;
+    --accent-teal: #0e7490;
+    --accent-green: #0f8a4b;
+    --accent-red: #d11a2a;
+    --accent-amber: #b45309;
+  }
+
+  .dark {
+    --bg-canvas: #0b0e11;
+    --bg-surface: #12171d;
+    --bg-subtle: #182028;
+    --bg-band: #141b22;
+    --bg-spotlight: #0e1a24;
+    --text-on-spotlight: #f1f5f9;
+    --border-hairline: #212a34;
+    --border-strong: #324050;
+    --text-primary: #f1f5f9;
+    --text-secondary: #b7c4d1;
+    --text-muted: #7a8a9b;
+    --accent-blue: #38bdf8;
+    --accent-teal: #2dd4bf;
+    --accent-green: #22c55e;
+    --accent-red: #fb7185;
+    --accent-amber: #fbbf24;
+  }
+
+  html,
+  body {
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  /* Font 1: Judul / Display Neo-Grotesque */
+  .font-display {
+    font-family: 'Bricolage Grotesque', 'IBM Plex Sans', sans-serif;
+  }
+
+  /* Font 2: Sub-judul, Navigasi, Hash, dan Angka Metrologi */
+  .font-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Alias konsisten untuk angka tabular */
+  .font-mono-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.35);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.55);
+}
+

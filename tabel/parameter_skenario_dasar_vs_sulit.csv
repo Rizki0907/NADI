@@ -1,0 +1,4 @@
+parameter,skenario_dasar,skenario_sulit,catatan
+"sigma gabungan (persen, 1 sigma)",0.28,0.559,"akurasi alat ukur; perlu dicocokkan dengan spesifikasi ATG, meter, dan sensor suhu"
+TRACE_PROB (peluang jejak telematika pada M1 dan M3),0.9,0.55,seberapa sering pencurian meninggalkan jejak berhenti atau deviasi rute
+SIZE_MULT (pengali ukuran pencurian),1.5,1.0,besar pencurian relatif terhadap rentang dasar modus

@@ -1,0 +1,17 @@
+kode,fitur,satuan,tier,sumber_di_lapangan
+D1,residual_pct,%,Tier 1,selisih V15 muat dan V15 diterima (ATG dan POS)
+D2,z_score,unitless,Tier 1,residual dibagi ketidakpastian gabungan
+D3,berhenti_menit,menit,Tier 1,durasi berhenti dari GPS dan telematika
+D4,deviasi_rute_km,km,Tier 1,deviasi dari rute terdaftar
+D5,jumlah_stop_takterdaftar,hitung,Tier 1,stop di luar titik resmi (geofence)
+D6,edge_baseline,%,Tier 2,"median residual historis per SPBU, dihitung kausal"
+D7,"resid_adj, z_adj",% dan unitless,Tier 2,residual setelah koreksi baseline SPBU
+D8,term_baseline,%,Tier 2,median residual historis per terminal penangkal drift
+D9,truck_zmean_prev,unitless,Tier 2,"rata-rata z historis per truk, pembeda bias meter truk"
+D10,"crew_resid_mean, crew_resid_std",%,Tier 2,riwayat residual ter-shrinkage per crew
+D11,"crew_cusum, crew_ewma, crew_roll_diff",unitless,Tier 2,"CUSUM k=0.25, multi-lambda EWMA, dan tren jangka pendek"
+D12,"hotspot_proximity, in_hotspot",kontinu dan biner,Tier 3,kedekatan spasial klaster GPS dan registri periode awal
+D13,inter_z_stop,unitless,Tier 2,interaksi residual dengan logaritma durasi berhenti
+D14,crew_unreg_stops,hitung,Tier 2,akumulasi stop tak terdaftar historis per crew
+D15,"pair_zscore, pair_excess_crew",unitless,Tier 3,statistik kausal pasangan crew dan SPBU dengan shrinkage
+D16,ethanol_grade,kategori,Tier 1,"grade E10, E20, atau E50 dari master produk"

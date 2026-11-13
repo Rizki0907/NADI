@@ -1,0 +1,124 @@
+{
+  "versi_kode": "v2.1",
+  "skenario_dasar": {
+    "N_TERMINAL": 3,
+    "SPBU_PER_TERMINAL": 40,
+    "N_CREW": 150,
+    "N_TRUCK": 100,
+    "DAYS": 180,
+    "DELIV_PER_SPBU_PER_DAY": 2.3,
+    "TRAIN_END": 108,
+    "VAL_END": 144,
+    "ALPHA": {
+      "E10": 0.00095,
+      "E20": 0.00098,
+      "E50": 0.0011
+    },
+    "U_COMP": {
+      "ATG": 0.2,
+      "meter": 0.15,
+      "suhu": 0.1,
+      "densitas": 0.075
+    },
+    "SIGMA_E50_MULT": 1.4,
+    "SIGMA_MULT": 1.0,
+    "SIZE_MULT": 1.5,
+    "FRAC_PELAKU": 0.06,
+    "PELUANG_PELAKU": [
+      0.2,
+      0.55
+    ],
+    "FRAC_AKTOR_BARU": 0.4,
+    "MODUS_INDIVIDU": {
+      "M1": 0.4,
+      "M2": 0.4,
+      "M3": 0.2
+    },
+    "MODUS_RANGE": {
+      "M1": [
+        0.3,
+        1.0
+      ],
+      "M2": [
+        0.1,
+        0.3
+      ],
+      "M3": [
+        0.2,
+        0.6
+      ]
+    },
+    "N_RING": 4,
+    "RING_CREW": [
+      2,
+      4
+    ],
+    "RING_SPBU": 2,
+    "N_PAIR_SINGLE": 8,
+    "KUAT_KOLUSI": [
+      0.25,
+      0.75
+    ],
+    "SKALA_KOLUSI": [
+      0.5,
+      1.0
+    ],
+    "UKURAN_KOLUSI": [
+      0.3,
+      1.0
+    ],
+    "N_DECOY_CREW": 10,
+    "FRAC_TRUCK_BIAS": 0.08,
+    "TRUCK_BIAS_RANGE": [
+      0.2,
+      0.5
+    ],
+    "REGULAR_SPBU": 8,
+    "REGULAR_SHARE": 0.85,
+    "PROB_DECOY_STOP": 0.03,
+    "TRACE_PROB": 0.9,
+    "FRAC_SPBU_ATG_BIAS": 0.08,
+    "ATG_BIAS_RANGE": [
+      0.3,
+      0.6
+    ],
+    "FRAC_E50_WATER": 0.04,
+    "E50_WATER_RANGE": [
+      0.2,
+      0.7
+    ],
+    "METER_DRIFT_MAX": 0.3,
+    "EVAP_MEAN": 0.06,
+    "EVAP_SD": 0.02,
+    "HOLDUP_MEAN": 0.02,
+    "HOLDUP_SD": 0.008,
+    "DB_EPS": 0.06,
+    "DB_MIN": 12,
+    "CAP": 0.05,
+    "AUDIT": 0.03,
+    "MISS": 0.2,
+    "FALSE_POS": 0.01,
+    "DELAY": 3,
+    "RETRAIN_EVERY": 7,
+    "MIN_DAY": 14,
+    "MIN_LABELS": 80,
+    "IF_TREES": 100,
+    "B_TREES": 150,
+    "CAP_EVAL": 0.05,
+    "MAIN_SEED": 42,
+    "N_SEEDS": 20,
+    "MIN_PAIR_TRIPS": 8
+  },
+  "skenario_sulit_override": {
+    "U_COMP": {
+      "ATG": 0.4,
+      "meter": 0.3,
+      "suhu": 0.2,
+      "densitas": 0.15
+    },
+    "TRACE_PROB": 0.55,
+    "SIZE_MULT": 1.0
+  },
+  "hash_konfigurasi_dasar": "83a4a949",
+  "hash_konfigurasi_sulit": "5eb161c3"
+}

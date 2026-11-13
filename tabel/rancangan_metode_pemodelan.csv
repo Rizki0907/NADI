@@ -1,0 +1,6 @@
+metode,peran_arsitektur,mekanisme_kerja
+baseline,Baseline Konvensional,Heuristik berbasis ambang batas z_score dan telematika tanpa pembelajaran
+IF,Unsupervised,Pohon isolasi murni pada atribut fisik dan perilaku tanpa umpan balik investigasi
+IF_AAD,Semi-Supervised,Pohon isolasi adaptif dengan pembobotan umpan balik hasil investigasi lapangan
+B_graph,Supervised Graf,Model LightGBM dengan fitur relasi pasangan dan riwayat kru kausal
+B_plus,Supervised Lanjutan,"Model LightGBM yang diperkaya fitur fisika terkalibrasi, regularisasi, dan pembobotan sampel"

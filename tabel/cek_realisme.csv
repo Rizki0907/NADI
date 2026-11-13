@@ -1,0 +1,11 @@
+pemeriksaan,nilai
+standar deviasi residual trip wajar (%),0.3527578988295637
+ketidakpastian teoretis sigma (%),0.2795084971874737
+rata-rata residual trip wajar terbobot volume (%),0.16288623322163684
+susut fisik evaporasi dan holdup agregat (%),0.08002970008189605
+susut anomali agregat (%),0.014846375337171884
+volume curian total (liter),144560.41393474585
+korelasi residual dengan T_load,-0.00021645105228932228
+korelasi residual dengan T_load - T_recv,-0.011600396144125625
+proporsi trip wajar di atas 0.2%,0.4574160505555326
+proporsi trip wajar di atas 0.5%,0.1606294659452315

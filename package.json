@@ -1,0 +1,46 @@
+{
+  "name": "nadi-dashboard",
+  "private": true,
+  "version": "2.1.0",
+  "description": "NADI: Neraca Aliran Distribusi Intelligence — Physics-Reconciled Fuel Loss Anomaly Triage DSS (IKMS 2026)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rizki0907/NADI.git"
+  },
+  "keywords": [
+    "nadi",
+    "pertamina-patra-niaga",
+    "ikms-2026",
+    "bioethanol",
+    "mass-balance",
+    "anomaly-triage",
+    "treesap"
+  ],
+  "author": "Tim Sains Data Universitas Negeri Surabaya",
+  "license": "MIT",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.0.0",
+    "lucide-react": "^0.511.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "recharts": "^2.15.3",
+    "tailwind-merge": "^3.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.6",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "tailwindcss": "^4.1.6",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}
+

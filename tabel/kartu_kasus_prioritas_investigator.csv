@@ -1,0 +1,13 @@
+trip_id,day,terminal_id,spbu_id,crew_id,ethanol_grade,skor_prob,tier,dugaan_sebab,rekomendasi,label
+42520,155,T1,T1-S36,C132,E10,0.974257585487008,Tier 1: Segera,bongkar di lokasi tak terdaftar atau klaster hotspot,"investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",1
+45182,165,T0,T0-S35,C071,E50,0.9688859869910473,Tier 1: Segera,bongkar di lokasi tak terdaftar atau klaster hotspot,"investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",1
+44650,163,T0,T0-S35,C071,E10,0.9616513554667355,Tier 1: Segera,bongkar di lokasi tak terdaftar atau klaster hotspot,"investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",1
+39863,146,T0,T0-S08,C071,E10,0.9591098036514225,Tier 1: Segera,bongkar di lokasi tak terdaftar atau klaster hotspot,"investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",1
+49263,180,T0,T0-S07,C038,E50,0.9588509263720022,Tier 1: Segera,indikasi kolusi relasional kru dan SPBU berulang,"investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",1
+43001,157,T0,T0-S35,C071,E10,0.9568355519953828,Tier 1: Segera,bongkar di lokasi tak terdaftar atau klaster hotspot,"investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",1
+48091,175,T1,T1-S37,C008,E20,0.9553765855260894,Tier 1: Segera,indikasi kolusi relasional kru dan SPBU berulang,"investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",1
+40471,148,T0,T0-S29,C071,E10,0.9527983029221233,Tier 1: Segera,bongkar di lokasi tak terdaftar atau klaster hotspot,"investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",1
+41903,153,T0,T0-S38,C071,E20,0.9513199794864106,Tier 1: Segera,bongkar di lokasi tak terdaftar atau klaster hotspot,"investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",1
+39960,146,T1,T1-S04,C070,E50,0.94634951488547,Tier 1: Segera,bongkar di lokasi tak terdaftar atau klaster hotspot,"investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",1
+44067,161,T0,T0-S38,C071,E20,0.9460183919497605,Tier 1: Segera,bongkar di lokasi tak terdaftar atau klaster hotspot,"investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",1
+40000,146,T1,T1-S24,C070,E10,0.9459013258007226,Tier 1: Segera,bongkar di lokasi tak terdaftar atau klaster hotspot,"investigasi fisik segera, audit ATG SPBU, dan inspeksi tangki",1
